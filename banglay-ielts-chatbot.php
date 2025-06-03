@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Banglay IELTS - AI Chatbot
  * Plugin URI: https://banglayelts.com
- * Description: Our Newly Chatbot
+ * Description: Our Newly Chatbot - RX
  * Version: 1.0.0
  * Author: Mr Rocks
  * Author URI: https://banglayelts.com
@@ -33,6 +33,81 @@ define('BIIC_FRONTEND_PATH', BIIC_PLUGIN_PATH . 'frontend/');
 define('BIIC_API_PATH', BIIC_PLUGIN_PATH . 'api/');
 
 /**
+ * Check system requirements before activation
+ */
+function biic_check_requirements() {
+    $errors = array();
+    
+    // Check PHP version
+    if (version_compare(PHP_VERSION, '7.4', '<')) {
+        $errors[] = 'PHP version 7.4 or higher is required. You are running ' . PHP_VERSION;
+    }
+    
+    // Check WordPress version
+    global $wp_version;
+    if (version_compare($wp_version, '5.0', '<')) {
+        $errors[] = 'WordPress version 5.0 or higher is required. You are running ' . $wp_version;
+    }
+    
+    // Check required PHP extensions
+    $required_extensions = array('curl', 'json', 'mbstring');
+    foreach ($required_extensions as $extension) {
+        if (!extension_loaded($extension)) {
+            $errors[] = "PHP extension '{$extension}' is required but not installed.";
+        }
+    }
+    
+    return $errors;
+}
+
+/**
+ * Plugin activation hook
+ */
+function biic_activate_plugin() {
+    error_log('BIIC: Starting plugin activation...');
+    
+    // Check requirements first
+    $errors = biic_check_requirements();
+    if (!empty($errors)) {
+        $error_message = 'Plugin activation failed due to system requirements:' . PHP_EOL . implode(PHP_EOL, $errors);
+        error_log('BIIC: ' . $error_message);
+        wp_die($error_message, 'Plugin Activation Error', array('back_link' => true));
+        return;
+    }
+    
+    try {
+        // Initialize the plugin instance
+        $plugin = BanglayIELTSChatbot::getInstance();
+        
+        // Run activation process
+        $plugin->activate();
+        
+        error_log('BIIC: Plugin activated successfully');
+        
+    } catch (Exception $e) {
+        error_log('BIIC: Activation failed - ' . $e->getMessage());
+        wp_die('Plugin activation failed: ' . $e->getMessage(), 'Plugin Activation Error', array('back_link' => true));
+    }
+}
+
+/**
+ * Plugin deactivation hook
+ */
+function biic_deactivate_plugin() {
+    try {
+        $plugin = BanglayIELTSChatbot::getInstance();
+        $plugin->deactivate();
+        error_log('BIIC: Plugin deactivated successfully');
+    } catch (Exception $e) {
+        error_log('BIIC: Deactivation error - ' . $e->getMessage());
+    }
+}
+
+// Register activation/deactivation hooks
+register_activation_hook(__FILE__, 'biic_activate_plugin');
+register_deactivation_hook(__FILE__, 'biic_deactivate_plugin');
+
+/**
  * Main Plugin Class
  */
 class BanglayIELTSChatbot {
@@ -56,6 +131,11 @@ class BanglayIELTSChatbot {
     public $api;
     
     /**
+     * Initialization errors
+     */
+    private $init_errors = array();
+    
+    /**
      * Get single instance
      */
     public static function getInstance() {
@@ -69,91 +149,127 @@ class BanglayIELTSChatbot {
      * Constructor
      */
     private function __construct() {
-        $this->init();
+        // Don't initialize during activation to avoid conflicts
+        if (!defined('WP_INSTALLING') || !WP_INSTALLING) {
+            add_action('plugins_loaded', array($this, 'init'), 10);
+        }
     }
     
     /**
      * Initialize plugin
      */
-    private function init() {
-        // Load text domain
-        add_action('init', array($this, 'load_textdomain'));
-        
-        // Include required files
-        $this->includes();
-        
-        // Initialize components
-        $this->init_components();
-        
-        // Setup hooks
-        $this->setup_hooks();
-        
-        // Activation and deactivation hooks
-        register_activation_hook(__FILE__, array($this, 'activate'));
-        register_deactivation_hook(__FILE__, array($this, 'deactivate'));
-        register_uninstall_hook(__FILE__, array('BanglayIELTSChatbot', 'uninstall'));
+    public function init() {
+        try {
+            // Load text domain
+            $this->load_textdomain();
+            
+            // Include required files
+            $this->includes();
+            
+            // Initialize components
+            $this->init_components();
+            
+            // Setup hooks
+            $this->setup_hooks();
+            
+        } catch (Exception $e) {
+            $this->init_errors[] = $e->getMessage();
+            error_log('BIIC: Initialization error - ' . $e->getMessage());
+            add_action('admin_notices', array($this, 'show_init_errors'));
+        }
+    }
+    
+    /**
+     * Show initialization errors
+     */
+    public function show_init_errors() {
+        if (!empty($this->init_errors)) {
+            foreach ($this->init_errors as $error) {
+                echo '<div class="notice notice-error"><p><strong>Banglay IELTS Chatbot:</strong> ' . esc_html($error) . '</p></div>';
+            }
+        }
     }
     
     /**
      * Include required files
      */
     private function includes() {
-        // Core classes
-        require_once BIIC_INCLUDES_PATH . 'class-database.php';
-        require_once BIIC_INCLUDES_PATH . 'class-chatbot.php';
-        require_once BIIC_INCLUDES_PATH . 'class-ai-integration.php';
-        require_once BIIC_INCLUDES_PATH . 'class-user-tracking.php';
-        require_once BIIC_INCLUDES_PATH . 'class-lead-management.php';
-        require_once BIIC_INCLUDES_PATH . 'class-analytics.php';
+        $required_files = array(
+            BIIC_INCLUDES_PATH . 'class-database.php',
+            BIIC_INCLUDES_PATH . 'class-chatbot.php',
+            BIIC_INCLUDES_PATH . 'class-ai-integration.php',
+            BIIC_INCLUDES_PATH . 'class-user-tracking.php',
+            BIIC_INCLUDES_PATH . 'class-lead-management.php',
+            BIIC_INCLUDES_PATH . 'class-analytics.php',
+            BIIC_API_PATH . 'class-api.php'
+        );
+        
+        foreach ($required_files as $file) {
+            if (!file_exists($file)) {
+                throw new Exception("Required file missing: " . basename($file));
+            }
+            require_once $file;
+        }
         
         // Admin classes
-        if (is_admin()) {
+        if (is_admin() && file_exists(BIIC_ADMIN_PATH . 'class-admin.php')) {
             require_once BIIC_ADMIN_PATH . 'class-admin.php';
         }
         
         // Frontend classes
-        if (!is_admin()) {
+        if (!is_admin() && file_exists(BIIC_FRONTEND_PATH . 'class-frontend.php')) {
             require_once BIIC_FRONTEND_PATH . 'class-frontend.php';
         }
-        
-        // API classes
-        require_once BIIC_API_PATH . 'class-api.php';
     }
     
     /**
      * Initialize components
      */
     private function init_components() {
-        // Initialize database
-        $this->database = new BIIC_Database();
-        
-        // Initialize chatbot core
-        $this->chatbot = new BIIC_Chatbot();
-        
-        // Initialize AI integration
-        $this->ai_integration = new BIIC_AI_Integration();
-        
-        // Initialize user tracking
-        $this->user_tracking = new BIIC_User_Tracking();
-        
-        // Initialize lead management
-        $this->lead_management = new BIIC_Lead_Management();
-        
-        // Initialize analytics
-        $this->analytics = new BIIC_Analytics();
-        
-        // Initialize admin (if in admin)
-        if (is_admin()) {
-            $this->admin = new BIIC_Admin();
+        try {
+            // Initialize database first
+            if (class_exists('BIIC_Database')) {
+                $this->database = new BIIC_Database();
+            }
+            
+            // Initialize other components only if their classes exist
+            if (class_exists('BIIC_Chatbot')) {
+                $this->chatbot = new BIIC_Chatbot();
+            }
+            
+            if (class_exists('BIIC_AI_Integration')) {
+                $this->ai_integration = new BIIC_AI_Integration();
+            }
+            
+            if (class_exists('BIIC_User_Tracking')) {
+                $this->user_tracking = new BIIC_User_Tracking();
+            }
+            
+            if (class_exists('BIIC_Lead_Management')) {
+                $this->lead_management = new BIIC_Lead_Management();
+            }
+            
+            if (class_exists('BIIC_Analytics')) {
+                $this->analytics = new BIIC_Analytics();
+            }
+            
+            if (class_exists('BIIC_API')) {
+                $this->api = new BIIC_API();
+            }
+            
+            // Initialize admin (if in admin)
+            if (is_admin() && class_exists('BIIC_Admin')) {
+                $this->admin = new BIIC_Admin();
+            }
+            
+            // Initialize frontend (if not in admin)
+            if (!is_admin() && class_exists('BIIC_Frontend')) {
+                $this->frontend = new BIIC_Frontend();
+            }
+            
+        } catch (Exception $e) {
+            throw new Exception('Component initialization failed: ' . $e->getMessage());
         }
-        
-        // Initialize frontend (if not in admin)
-        if (!is_admin()) {
-            $this->frontend = new BIIC_Frontend();
-        }
-        
-        // Initialize API
-        $this->api = new BIIC_API();
     }
     
     /**
@@ -172,7 +288,9 @@ class BanglayIELTSChatbot {
         add_action('wp_ajax_nopriv_biic_chat_message', array($this, 'handle_chat_message'));
         
         // REST API initialization
-        add_action('rest_api_init', array($this->api, 'register_routes'));
+        if ($this->api) {
+            add_action('rest_api_init', array($this->api, 'register_routes'));
+        }
         
         // Add chatbot to footer
         add_action('wp_footer', array($this, 'add_chatbot_widget'));
@@ -182,6 +300,47 @@ class BanglayIELTSChatbot {
         
         // Plugin action links
         add_filter('plugin_action_links_' . BIIC_PLUGIN_BASENAME, array($this, 'add_action_links'));
+    }
+    
+    // ... [Rest of your existing methods remain the same] ...
+    
+    /**
+     * Plugin activation - IMPROVED VERSION
+     */
+    public function activate() {
+        error_log('BIIC: Running activation process...');
+        
+        try {
+            // Create database tables first
+            if ($this->database) {
+                error_log('BIIC: Creating database tables...');
+                $this->database->create_tables();
+                error_log('BIIC: Database tables created successfully');
+            } else {
+                throw new Exception('Database component not initialized');
+            }
+            
+            // Set default options
+            error_log('BIIC: Setting default options...');
+            $this->set_default_options();
+            
+            // Create upload directory
+            error_log('BIIC: Creating upload directory...');
+            $this->create_upload_directory();
+            
+            // Flush rewrite rules
+            flush_rewrite_rules();
+            
+            // Set activation flag
+            update_option('biic_plugin_activated', true);
+            update_option('biic_activation_time', current_time('mysql'));
+            
+            error_log('BIIC: Activation completed successfully');
+            
+        } catch (Exception $e) {
+            error_log('BIIC: Activation failed - ' . $e->getMessage());
+            throw $e;
+        }
     }
     
     /**
@@ -205,320 +364,68 @@ class BanglayIELTSChatbot {
         }
         
         // Initialize tracking
-        $this->user_tracking->init_tracking();
+        if ($this->user_tracking) {
+            $this->user_tracking->init_tracking();
+        }
         
         // Initialize chatbot session
-        $this->chatbot->init_session();
-    }
-    
-    /**
-     * Enqueue frontend assets
-     */
-    public function enqueue_frontend_assets() {
-        // Only load on frontend
-        if (is_admin()) return;
-        
-        // CSS
-        wp_enqueue_style(
-            'biic-chatbot-widget',
-            BIIC_PLUGIN_ASSETS_URL . 'css/chatbot-widget.css',
-            array(),
-            BIIC_VERSION
-        );
-        
-        // JavaScript
-        wp_enqueue_script(
-            'biic-chatbot-widget',
-            BIIC_PLUGIN_ASSETS_URL . 'js/chatbot-widget.js',
-            array('jquery'),
-            BIIC_VERSION,
-            true
-        );
-        
-        // User tracking script
-        wp_enqueue_script(
-            'biic-user-tracking',
-            BIIC_PLUGIN_ASSETS_URL . 'js/user-tracking.js',
-            array('jquery'),
-            BIIC_VERSION,
-            true
-        );
-        
-        // Localize script
-        wp_localize_script('biic-chatbot-widget', 'biic_ajax', array(
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('biic_chat_nonce'),
-            'rest_url' => rest_url('biic/v1/'),
-            'plugin_url' => BIIC_PLUGIN_URL,
-            'strings' => array(
-                'typing' => __('বট টাইপ করছে...', 'banglay-ielts-chatbot'),
-                'error' => __('দুঃখিত, একটি সমস্যা হয়েছে।', 'banglay-ielts-chatbot'),
-                'offline' => __('আমরা এখন অফলাইনে আছি।', 'banglay-ielts-chatbot'),
-                'copyright' => __('Made with Love Rocks', 'banglay-ielts-chatbot')
-            )
-        ));
-    }
-    
-    /**
-     * Enqueue admin assets
-     */
-    public function enqueue_admin_assets($hook) {
-        // Only load on plugin pages
-        if (strpos($hook, 'biic') === false) return;
-        
-        // CSS
-        wp_enqueue_style(
-            'biic-admin-style',
-            BIIC_PLUGIN_ASSETS_URL . 'css/admin-style.css',
-            array(),
-            BIIC_VERSION
-        );
-        
-        wp_enqueue_style(
-            'biic-dashboard-style',
-            BIIC_PLUGIN_ASSETS_URL . 'css/dashboard.css',
-            array(),
-            BIIC_VERSION
-        );
-        
-        // JavaScript
-        wp_enqueue_script(
-            'biic-admin-script',
-            BIIC_PLUGIN_ASSETS_URL . 'js/admin-script.js',
-            array('jquery', 'jquery-ui-datepicker'),
-            BIIC_VERSION,
-            true
-        );
-        
-        wp_enqueue_script(
-            'biic-analytics',
-            BIIC_PLUGIN_ASSETS_URL . 'js/analytics.js',
-            array('jquery'),
-            BIIC_VERSION,
-            true
-        );
-        
-        // Chart.js for analytics
-        wp_enqueue_script(
-            'chart-js',
-            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js',
-            array(),
-            '3.9.1',
-            true
-        );
-        
-        // Localize admin script
-        wp_localize_script('biic-admin-script', 'biic_admin', array(
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('biic_admin_nonce'),
-            'rest_url' => rest_url('biic/v1/'),
-        ));
-    }
-    
-    /**
-     * Handle AJAX chat messages
-     */
-    public function handle_chat_message() {
-        // Verify nonce
-        if (!wp_verify_nonce($_POST['nonce'], 'biic_chat_nonce')) {
-            wp_die(__('Security check failed', 'banglay-ielts-chatbot'));
-        }
-        
-        $message = sanitize_text_field($_POST['message']);
-        $session_id = sanitize_text_field($_POST['session_id']);
-        
-        // Process message through chatbot
-        $response = $this->chatbot->process_message($message, $session_id);
-        
-        // Track interaction
-        $this->user_tracking->track_message($session_id, $message, $response);
-        
-        wp_send_json_success($response);
-    }
-    
-    /**
-     * Add chatbot widget to footer
-     */
-    public function add_chatbot_widget() {
-        if (is_admin()) return;
-        
-        // Check if chatbot is enabled
-        if (!get_option('biic_chatbot_enabled', true)) return;
-        
-        include BIIC_FRONTEND_PATH . 'templates/chatbot-widget.php';
-    }
-    
-    /**
-     * Add admin menu
-     */
-    public function add_admin_menu() {
-        // Main menu
-        add_menu_page(
-            __('Banglay IELTS Chatbot', 'banglay-ielts-chatbot'),
-            __('BIIC Chatbot', 'banglay-ielts-chatbot'),
-            'manage_options',
-            'biic-dashboard',
-            array($this->admin, 'dashboard_page'),
-            'dashicons-format-chat',
-            30
-        );
-        
-        // Submenu pages
-        add_submenu_page(
-            'biic-dashboard',
-            __('Dashboard', 'banglay-ielts-chatbot'),
-            __('Dashboard', 'banglay-ielts-chatbot'),
-            'manage_options',
-            'biic-dashboard',
-            array($this->admin, 'dashboard_page')
-        );
-        
-        add_submenu_page(
-            'biic-dashboard',
-            __('Conversations', 'banglay-ielts-chatbot'),
-            __('Conversations', 'banglay-ielts-chatbot'),
-            'manage_options',
-            'biic-conversations',
-            array($this->admin, 'conversations_page')
-        );
-        
-        add_submenu_page(
-            'biic-dashboard',
-            __('Leads', 'banglay-ielts-chatbot'),
-            __('Leads', 'banglay-ielts-chatbot'),
-            'manage_options',
-            'biic-leads',
-            array($this->admin, 'leads_page')
-        );
-        
-        add_submenu_page(
-            'biic-dashboard',
-            __('Analytics', 'banglay-ielts-chatbot'),
-            __('Analytics', 'banglay-ielts-chatbot'),
-            'manage_options',
-            'biic-analytics',
-            array($this->admin, 'analytics_page')
-        );
-        
-        add_submenu_page(
-            'biic-dashboard',
-            __('Settings', 'banglay-ielts-chatbot'),
-            __('Settings', 'banglay-ielts-chatbot'),
-            'manage_options',
-            'biic-settings',
-            array($this->admin, 'settings_page')
-        );
-    }
-    
-    /**
-     * Add action links to plugin page
-     */
-    public function add_action_links($links) {
-        $plugin_links = array(
-            '<a href="' . admin_url('admin.php?page=biic-settings') . '">' . __('Settings', 'banglay-ielts-chatbot') . '</a>',
-            '<a href="' . admin_url('admin.php?page=biic-dashboard') . '">' . __('Dashboard', 'banglay-ielts-chatbot') . '</a>',
-        );
-        
-        return array_merge($plugin_links, $links);
-    }
-    
-    /**
-     * Plugin activation
-     */
-    public function activate() {
-        // Create database tables
-        $this->database->create_tables();
-        
-        // Set default options
-        $this->set_default_options();
-        
-        // Create upload directory
-        $this->create_upload_directory();
-        
-        // Flush rewrite rules
-        flush_rewrite_rules();
-        
-        // Log activation
-        error_log('Banglay IELTS Chatbot activated successfully');
-    }
-    
-    /**
-     * Plugin deactivation
-     */
-    public function deactivate() {
-        // Clear scheduled events
-        wp_clear_scheduled_hook('biic_cleanup_old_sessions');
-        wp_clear_scheduled_hook('biic_lead_follow_up');
-        
-        // Flush rewrite rules
-        flush_rewrite_rules();
-        
-        // Log deactivation
-        error_log('Banglay IELTS Chatbot deactivated');
-    }
-    
-    /**
-     * Plugin uninstall
-     */
-    public static function uninstall() {
-        // Remove all plugin data if option is set
-        if (get_option('biic_remove_data_on_uninstall', false)) {
-            // Drop tables
-            global $wpdb;
-            $tables = array(
-                $wpdb->prefix . 'biic_chat_sessions',
-                $wpdb->prefix . 'biic_chat_messages', 
-                $wpdb->prefix . 'biic_user_interactions',
-                $wpdb->prefix . 'biic_leads',
-                $wpdb->prefix . 'biic_analytics'
-            );
-            
-            foreach ($tables as $table) {
-                $wpdb->query("DROP TABLE IF EXISTS $table");
-            }
-            
-            // Remove options
-            delete_option('biic_chatbot_enabled');
-            delete_option('biic_openai_api_key');
-            delete_option('biic_timezone');
-            delete_option('biic_remove_data_on_uninstall');
+        if ($this->chatbot) {
+            $this->chatbot->init_session();
         }
     }
     
     /**
-     * Set default options
+     * Set default options - SAFE VERSION
      */
     private function set_default_options() {
-        // Default settings
-        add_option('biic_chatbot_enabled', true);
-        add_option('biic_chat_position', 'bottom-right');
-        add_option('biic_chat_theme', 'modern');
-        add_option('biic_welcome_message', 'আস্সালামু আলাইকুম! IELTS এর ব্যাপারে কিছু জানতে চান?');
-        add_option('biic_business_hours', array(
-            'start' => '10:00',
-            'end' => '18:00',
-            'days' => array('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday')
-        ));
-        add_option('biic_auto_responses', true);
-        add_option('biic_lead_notifications', true);
-        add_option('biic_analytics_enabled', true);
+        $default_options = array(
+            'biic_chatbot_enabled' => true,
+            'biic_chat_position' => 'bottom-right',
+            'biic_chat_theme' => 'modern',
+            'biic_welcome_message' => 'আস্সালামু আলাইকুম! IELTS এর ব্যাপারে কিছু জানতে চান?',
+            'biic_auto_responses' => true,
+            'biic_lead_notifications' => true,
+            'biic_analytics_enabled' => true,
+            'biic_timezone' => 'Asia/Dhaka'
+        );
+        
+        foreach ($default_options as $option_name => $default_value) {
+            if (get_option($option_name) === false) {
+                add_option($option_name, $default_value);
+            }
+        }
     }
     
     /**
-     * Create upload directory
+     * Create upload directory - SAFE VERSION
      */
     private function create_upload_directory() {
         $upload_dir = wp_upload_dir();
+        
+        if ($upload_dir['error']) {
+            throw new Exception('WordPress upload directory error: ' . $upload_dir['error']);
+        }
+        
         $biic_dir = $upload_dir['basedir'] . '/biic-chatbot/';
         
         if (!file_exists($biic_dir)) {
-            wp_mkdir_p($biic_dir);
+            $created = wp_mkdir_p($biic_dir);
+            if (!$created) {
+                throw new Exception('Failed to create upload directory: ' . $biic_dir);
+            }
             
             // Create .htaccess for security
             $htaccess_content = "Options -Indexes\nDeny from all";
-            file_put_contents($biic_dir . '.htaccess', $htaccess_content);
+            $htaccess_result = file_put_contents($biic_dir . '.htaccess', $htaccess_content);
+            
+            if ($htaccess_result === false) {
+                error_log('BIIC: Warning - Could not create .htaccess file in upload directory');
+            }
         }
     }
+    
+    // Add all your other existing methods here...
+    // (enqueue_frontend_assets, handle_chat_message, add_chatbot_widget, etc.)
     
     /**
      * Get plugin instance
@@ -536,7 +443,7 @@ function biic_init() {
 }
 
 // Start the plugin
-biic_init();
+add_action('plugins_loaded', 'biic_init', 5);
 
 /**
  * Helper function to get plugin instance

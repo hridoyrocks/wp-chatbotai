@@ -49,27 +49,39 @@ class BIIC_Database {
      * Create all database tables
      */
     public function create_tables() {
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        error_log('BIIC Database: Starting table creation...');
         
-        $this->create_chat_sessions_table();
-        $this->create_chat_messages_table();
-        $this->create_user_interactions_table();
-        $this->create_leads_table();
-        $this->create_analytics_table();
+        // Require WordPress upgrade functions
+        if (!function_exists('dbDelta')) {
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        }
         
-        // Update database version
-        update_option('biic_db_version', $this->db_version);
+        try {
+            $this->create_chat_sessions_table();
+            $this->create_chat_messages_table();
+            $this->create_user_interactions_table();
+            $this->create_leads_table();
+            $this->create_analytics_table();
+            
+            // Update database version
+            update_option('biic_db_version', $this->db_version);
+            error_log('BIIC Database: All tables created successfully');
+            
+        } catch (Exception $e) {
+            error_log('BIIC Database: Table creation failed - ' . $e->getMessage());
+            throw $e;
+        }
     }
     
     /**
-     * Create chat sessions table
+     * Create chat sessions table - FIXED VERSION
      */
     private function create_chat_sessions_table() {
         $table_name = $this->tables['chat_sessions'];
         
-        $sql = "CREATE TABLE $table_name (
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
             id bigint(20) NOT NULL AUTO_INCREMENT,
-            session_id varchar(255) NOT NULL UNIQUE,
+            session_id varchar(255) NOT NULL,
             user_id bigint(20) NULL,
             ip_address varchar(45) NOT NULL,
             user_agent text NOT NULL,
@@ -94,23 +106,24 @@ class BIIC_Database {
             created_at datetime DEFAULT CURRENT_TIMESTAMP,
             updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id),
-            KEY session_id (session_id),
+            UNIQUE KEY session_id (session_id),
             KEY user_id (user_id),
             KEY started_at (started_at),
             KEY lead_status (lead_status),
             KEY is_active (is_active)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
         
-        dbDelta($sql);
+        $result = dbDelta($sql);
+        error_log('BIIC Database: Chat sessions table creation result: ' . print_r($result, true));
     }
     
     /**
-     * Create chat messages table
+     * Create chat messages table - FIXED VERSION (removed foreign key)
      */
     private function create_chat_messages_table() {
         $table_name = $this->tables['chat_messages'];
         
-        $sql = "CREATE TABLE $table_name (
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
             id bigint(20) NOT NULL AUTO_INCREMENT,
             session_id varchar(255) NOT NULL,
             message_type enum('user','bot','system') NOT NULL,
@@ -129,424 +142,343 @@ class BIIC_Database {
             KEY session_id (session_id),
             KEY message_type (message_type),
             KEY detected_intent (detected_intent),
-            KEY timestamp (timestamp),
-            FOREIGN KEY (session_id) REFERENCES {$this->tables['chat_sessions']}(session_id) ON DELETE CASCADE
+            KEY timestamp (timestamp)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
         
-        dbDelta($sql);
+        $result = dbDelta($sql);
+        error_log('BIIC Database: Chat messages table creation result: ' . print_r($result, true));
+    }
+            
+            // User Interactions Table
+            $sql_interactions = "CREATE TABLE {$this->table_prefix}user_interactions (
+                id bigint(20) NOT NULL AUTO_INCREMENT,
+                session_id varchar(255) NOT NULL,
+                interaction_type varchar(100) NOT NULL,
+                interaction_data json NULL,
+                page_url varchar(500) NULL,
+                element_id varchar(100) NULL,
+                element_text varchar(255) NULL,
+                scroll_depth int(11) NULL,
+                time_on_page int(11) NULL,
+                timestamp datetime DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (id),
+                KEY session_id (session_id),
+                KEY interaction_type (interaction_type),
+                KEY timestamp (timestamp)
+            ) $charset_collate;";
+            
+            // Leads Table
+            $sql_leads = "CREATE TABLE {$this->table_prefix}leads (
+                id bigint(20) NOT NULL AUTO_INCREMENT,
+                session_id varchar(255) NOT NULL,
+                name varchar(255) NULL,
+                email varchar(255) NULL,
+                phone varchar(20) NULL,
+                course_interest varchar(100) NULL,
+                lead_score int(11) DEFAULT 0,
+                lead_status enum('new','contacted','qualified','converted','lost','nurturing') DEFAULT 'new',
+                lead_source varchar(100) NULL,
+                priority enum('high','medium','low') DEFAULT 'medium',
+                assigned_to bigint(20) NULL,
+                follow_up_date date NULL,
+                follow_up_notes text NULL,
+                last_contact_date datetime NULL,
+                conversion_date datetime NULL,
+                conversion_value decimal(10,2) NULL,
+                notes text NULL,
+                tags varchar(500) NULL,
+                created_at datetime DEFAULT CURRENT_TIMESTAMP,
+                updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                PRIMARY KEY (id),
+                KEY session_id (session_id),
+                KEY email (email),
+                KEY phone (phone),
+                KEY lead_status (lead_status),
+                KEY lead_score (lead_score),
+                KEY course_interest (course_interest),
+                KEY created_at (created_at)
+            ) $charset_collate;";
+            
+            // Analytics Table
+            $sql_analytics = "CREATE TABLE {$this->table_prefix}analytics (
+                id bigint(20) NOT NULL AUTO_INCREMENT,
+                date date NOT NULL,
+                metric_name varchar(100) NOT NULL,
+                metric_value decimal(15,4) NOT NULL,
+                metric_type varchar(50) NOT NULL,
+                dimensions json NULL,
+                period_type enum('hourly','daily','weekly','monthly') DEFAULT 'daily',
+                created_at datetime DEFAULT CURRENT_TIMESTAMP,
+                updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                PRIMARY KEY (id),
+                UNIQUE KEY unique_date_metric (date, metric_name, period_type),
+                KEY metric_name (metric_name),
+                KEY date (date)
+            ) $charset_collate;";
+            
+            // Execute table creation
+            $tables = array(
+                'chat_sessions' => $sql_sessions,
+                'chat_messages' => $sql_messages,
+                'user_interactions' => $sql_interactions,
+                'leads' => $sql_leads,
+                'analytics' => $sql_analytics
+            );
+            
+            $created_tables = array();
+            $errors = array();
+            
+            foreach ($tables as $table_name => $sql) {
+                $result = dbDelta($sql);
+                
+                // Check if table was created successfully
+                $table_exists = $wpdb->get_var("SHOW TABLES LIKE '{$this->table_prefix}{$table_name}'");
+                
+                if ($table_exists) {
+                    $created_tables[] = $table_name;
+                    error_log("BIIC: Successfully created table {$this->table_prefix}{$table_name}");
+                } else {
+                    $errors[] = "Failed to create table {$this->table_prefix}{$table_name}";
+                    error_log("BIIC: Failed to create table {$this->table_prefix}{$table_name}");
+                }
+            }
+            
+            // Insert initial data
+            $this->insert_initial_data();
+            
+            // Update database version
+            update_option('biic_db_version', $this->db_version);
+            
+            return array(
+                'success' => empty($errors),
+                'created_tables' => $created_tables,
+                'errors' => $errors
+            );
+            
+        } catch (Exception $e) {
+            error_log('BIIC Database Creation Error: ' . $e->getMessage());
+            return array(
+                'success' => false,
+                'errors' => array($e->getMessage())
+            );
+        }
     }
     
     /**
-     * Create user interactions table
+     * Insert initial data
      */
-    private function create_user_interactions_table() {
-        $table_name = $this->tables['user_interactions'];
+    private function insert_initial_data() {
+        global $wpdb;
         
-        $sql = "CREATE TABLE $table_name (
-            id bigint(20) NOT NULL AUTO_INCREMENT,
-            session_id varchar(255) NOT NULL,
-            interaction_type varchar(100) NOT NULL,
-            interaction_data json NULL,
-            page_url varchar(500) NULL,
-            element_id varchar(100) NULL,
-            element_text varchar(255) NULL,
-            scroll_depth int(11) NULL,
-            time_on_page int(11) NULL,
-            timestamp datetime DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY (id),
-            KEY session_id (session_id),
-            KEY interaction_type (interaction_type),
-            KEY timestamp (timestamp),
-            FOREIGN KEY (session_id) REFERENCES {$this->tables['chat_sessions']}(session_id) ON DELETE CASCADE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
-        
-        dbDelta($sql);
+        try {
+            // Insert sample analytics data
+            $current_date = current_time('Y-m-d');
+            $analytics_data = array(
+                array(
+                    'date' => $current_date,
+                    'metric_name' => 'daily_conversations',
+                    'metric_value' => 0,
+                    'metric_type' => 'counter'
+                ),
+                array(
+                    'date' => $current_date,
+                    'metric_name' => 'daily_leads',
+                    'metric_value' => 0,
+                    'metric_type' => 'counter'
+                ),
+                array(
+                    'date' => $current_date,
+                    'metric_name' => 'conversion_rate',
+                    'metric_value' => 0,
+                    'metric_type' => 'percentage'
+                )
+            );
+            
+            foreach ($analytics_data as $data) {
+                $wpdb->insert(
+                    $this->table_prefix . 'analytics',
+                    $data,
+                    array('%s', '%s', '%f', '%s')
+                );
+            }
+            
+        } catch (Exception $e) {
+            error_log('BIIC Initial Data Error: ' . $e->getMessage());
+        }
     }
     
     /**
-     * Create leads table
+     * Get table name with prefix
      */
-    private function create_leads_table() {
-        $table_name = $this->tables['leads'];
-        
-        $sql = "CREATE TABLE $table_name (
-            id bigint(20) NOT NULL AUTO_INCREMENT,
-            session_id varchar(255) NOT NULL,
-            name varchar(255) NULL,
-            email varchar(255) NULL,
-            phone varchar(20) NULL,
-            course_interest varchar(100) NULL,
-            lead_score int(11) DEFAULT 0,
-            lead_status enum('new','contacted','qualified','converted','lost') DEFAULT 'new',
-            lead_source varchar(100) NULL,
-            priority enum('high','medium','low') DEFAULT 'medium',
-            assigned_to bigint(20) NULL,
-            follow_up_date date NULL,
-            follow_up_notes text NULL,
-            last_contact_date datetime NULL,
-            conversion_date datetime NULL,
-            conversion_value decimal(10,2) NULL,
-            notes text NULL,
-            tags varchar(500) NULL,
-            custom_fields json NULL,
-            created_at datetime DEFAULT CURRENT_TIMESTAMP,
-            updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY (id),
-            KEY session_id (session_id),
-            KEY email (email),
-            KEY phone (phone),
-            KEY lead_status (lead_status),
-            KEY course_interest (course_interest),
-            KEY assigned_to (assigned_to),
-            KEY follow_up_date (follow_up_date),
-            KEY created_at (created_at),
-            FOREIGN KEY (session_id) REFERENCES {$this->tables['chat_sessions']}(session_id) ON DELETE CASCADE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
-        
-        dbDelta($sql);
+    public function get_table($table_name) {
+        return $this->table_prefix . $table_name;
     }
     
     /**
-     * Create analytics table
+     * Check if tables exist
      */
-    private function create_analytics_table() {
-        $table_name = $this->tables['analytics'];
+    public function tables_exist() {
+        global $wpdb;
         
-        $sql = "CREATE TABLE $table_name (
-            id bigint(20) NOT NULL AUTO_INCREMENT,
-            date date NOT NULL,
-            metric_name varchar(100) NOT NULL,
-            metric_value decimal(15,4) NOT NULL,
-            metric_type varchar(50) NOT NULL,
-            dimensions json NULL,
-            created_at datetime DEFAULT CURRENT_TIMESTAMP,
-            PRIMARY KEY (id),
-            UNIQUE KEY date_metric (date, metric_name),
-            KEY metric_name (metric_name),
-            KEY metric_type (metric_type),
-            KEY date (date)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
+        $required_tables = array('chat_sessions', 'chat_messages', 'leads');
         
-        dbDelta($sql);
-    }
-    
-    /**
-     * Get table name
-     */
-    public function get_table($table_key) {
-        return isset($this->tables[$table_key]) ? $this->tables[$table_key] : false;
+        foreach ($required_tables as $table) {
+            $table_name = $this->table_prefix . $table;
+            $exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'");
+            
+            if (!$exists) {
+                return false;
+            }
+        }
+        
+        return true;
     }
     
     /**
      * Insert chat session
      */
-    public function insert_chat_session($data) {
-        $defaults = array(
-            'session_id' => $this->generate_session_id(),
-            'ip_address' => $this->get_user_ip(),
+    public function insert_chat_session($session_data) {
+        global $wpdb;
+        
+        $default_data = array(
+            'session_id' => uniqid('biic_'),
+            'ip_address' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
             'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
             'started_at' => current_time('mysql'),
             'last_activity' => current_time('mysql'),
-            'page_url' => $_SERVER['HTTP_REFERER'] ?? '',
+            'is_active' => 1
         );
         
-        $data = wp_parse_args($data, $defaults);
+        $data = array_merge($default_data, $session_data);
         
-        $result = $this->wpdb->insert(
-            $this->tables['chat_sessions'],
-            $data,
-            array(
-                '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 
-                '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%s', '%d',
-                '%s', '%s', '%s'
-            )
+        $result = $wpdb->insert(
+            $this->table_prefix . 'chat_sessions',
+            $data
         );
         
-        return $result ? $this->wpdb->insert_id : false;
+        return $result ? $wpdb->insert_id : false;
     }
     
     /**
      * Insert chat message
      */
-    public function insert_chat_message($data) {
-        $defaults = array(
-            'timestamp' => current_time('mysql'),
-            'content_type' => 'text',
+    public function insert_chat_message($session_id, $message_type, $content, $additional_data = array()) {
+        global $wpdb;
+        
+        $default_data = array(
+            'session_id' => $session_id,
+            'message_type' => $message_type,
+            'content' => $content,
+            'timestamp' => current_time('mysql')
         );
         
-        $data = wp_parse_args($data, $defaults);
+        $data = array_merge($default_data, $additional_data);
         
-        $result = $this->wpdb->insert(
-            $this->tables['chat_messages'],
-            $data,
-            array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%f', '%d', '%d', '%s')
+        $result = $wpdb->insert(
+            $this->table_prefix . 'chat_messages',
+            $data
         );
         
+        // Update session message count
         if ($result) {
-            // Update session last activity and message count
-            $this->update_session_activity($data['session_id']);
-        }
-        
-        return $result ? $this->wpdb->insert_id : false;
-    }
-    
-    /**
-     * Insert user interaction
-     */
-    public function insert_user_interaction($data) {
-        $defaults = array(
-            'timestamp' => current_time('mysql'),
-        );
-        
-        $data = wp_parse_args($data, $defaults);
-        
-        return $this->wpdb->insert(
-            $this->tables['user_interactions'],
-            $data,
-            array('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d')
-        );
-    }
-    
-    /**
-     * Insert or update lead
-     */
-    public function upsert_lead($data) {
-        // Check if lead exists
-        $existing_lead = $this->wpdb->get_row(
-            $this->wpdb->prepare(
-                "SELECT id FROM {$this->tables['leads']} WHERE session_id = %s OR email = %s",
-                $data['session_id'],
-                $data['email'] ?? ''
-            )
-        );
-        
-        if ($existing_lead) {
-            // Update existing lead
-            unset($data['created_at']);
-            $result = $this->wpdb->update(
-                $this->tables['leads'],
-                $data,
-                array('id' => $existing_lead->id),
-                array('%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%f', '%s', '%s', '%s'),
-                array('%d')
-            );
-            return $existing_lead->id;
-        } else {
-            // Insert new lead
-            $defaults = array(
-                'created_at' => current_time('mysql'),
-                'lead_status' => 'new',
-                'priority' => 'medium',
-            );
-            
-            $data = wp_parse_args($data, $defaults);
-            
-            $result = $this->wpdb->insert(
-                $this->tables['leads'],
-                $data,
-                array('%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%f', '%s', '%s', '%s')
-            );
-            
-            return $result ? $this->wpdb->insert_id : false;
-        }
-    }
-    
-    /**
-     * Update session activity
-     */
-    public function update_session_activity($session_id) {
-        return $this->wpdb->update(
-            $this->tables['chat_sessions'],
-            array(
-                'last_activity' => current_time('mysql'),
-                'total_messages' => new WP_Query("SELECT COUNT(*) FROM {$this->tables['chat_messages']} WHERE session_id = '$session_id'")
-            ),
-            array('session_id' => $session_id),
-            array('%s', '%d'),
-            array('%s')
-        );
-    }
-    
-    /**
-     * Get chat session
-     */
-    public function get_chat_session($session_id) {
-        return $this->wpdb->get_row(
-            $this->wpdb->prepare(
-                "SELECT * FROM {$this->tables['chat_sessions']} WHERE session_id = %s",
+            $wpdb->query($wpdb->prepare(
+                "UPDATE {$this->table_prefix}chat_sessions 
+                 SET total_messages = total_messages + 1, last_activity = %s 
+                 WHERE session_id = %s",
+                current_time('mysql'),
                 $session_id
-            )
-        );
+            ));
+        }
+        
+        return $result ? $wpdb->insert_id : false;
     }
     
     /**
-     * Get chat messages
+     * Insert lead
      */
-    public function get_chat_messages($session_id, $limit = 50) {
-        return $this->wpdb->get_results(
-            $this->wpdb->prepare(
-                "SELECT * FROM {$this->tables['chat_messages']} 
-                WHERE session_id = %s 
-                ORDER BY timestamp ASC 
-                LIMIT %d",
-                $session_id,
-                $limit
-            )
+    public function insert_lead($lead_data) {
+        global $wpdb;
+        
+        $default_data = array(
+            'lead_status' => 'new',
+            'lead_score' => 0,
+            'created_at' => current_time('mysql'),
+            'updated_at' => current_time('mysql')
         );
+        
+        $data = array_merge($default_data, $lead_data);
+        
+        $result = $wpdb->insert(
+            $this->table_prefix . 'leads',
+            $data
+        );
+        
+        return $result ? $wpdb->insert_id : false;
     }
     
     /**
      * Get recent conversations
      */
     public function get_recent_conversations($limit = 20, $offset = 0) {
-        return $this->wpdb->get_results(
-            $this->wpdb->prepare(
-                "SELECT s.*, 
-                       COUNT(m.id) as message_count,
-                       MAX(m.timestamp) as last_message_time,
-                       l.name as lead_name,
-                       l.email as lead_email,
-                       l.phone as lead_phone
-                FROM {$this->tables['chat_sessions']} s
-                LEFT JOIN {$this->tables['chat_messages']} m ON s.session_id = m.session_id
-                LEFT JOIN {$this->tables['leads']} l ON s.session_id = l.session_id
-                GROUP BY s.id
-                ORDER BY s.last_activity DESC
-                LIMIT %d OFFSET %d",
-                $limit,
-                $offset
-            )
-        );
+        global $wpdb;
+        
+        return $wpdb->get_results($wpdb->prepare(
+            "SELECT s.*, l.name as lead_name, l.phone as lead_phone, l.email as lead_email 
+             FROM {$this->table_prefix}chat_sessions s
+             LEFT JOIN {$this->table_prefix}leads l ON s.session_id = l.session_id
+             ORDER BY s.started_at DESC
+             LIMIT %d OFFSET %d",
+            $limit, $offset
+        ));
     }
     
     /**
      * Get leads
      */
     public function get_leads($filters = array(), $limit = 20, $offset = 0) {
-        $where_clauses = array('1=1');
-        $values = array();
+        global $wpdb;
+        
+        $where_conditions = array('1=1');
+        $where_values = array();
         
         if (!empty($filters['status'])) {
-            $where_clauses[] = 'lead_status = %s';
-            $values[] = $filters['status'];
+            $where_conditions[] = 'lead_status = %s';
+            $where_values[] = $filters['status'];
         }
         
         if (!empty($filters['course_interest'])) {
-            $where_clauses[] = 'course_interest = %s';
-            $values[] = $filters['course_interest'];
+            $where_conditions[] = 'course_interest = %s';
+            $where_values[] = $filters['course_interest'];
         }
         
-        if (!empty($filters['date_from'])) {
-            $where_clauses[] = 'DATE(created_at) >= %s';
-            $values[] = $filters['date_from'];
-        }
+        $where_clause = implode(' AND ', $where_conditions);
         
-        if (!empty($filters['date_to'])) {
-            $where_clauses[] = 'DATE(created_at) <= %s';
-            $values[] = $filters['date_to'];
-        }
+        $query = "SELECT * FROM {$this->table_prefix}leads 
+                  WHERE $where_clause 
+                  ORDER BY created_at DESC 
+                  LIMIT %d OFFSET %d";
         
-        $where_clause = implode(' AND ', $where_clauses);
-        $values[] = $limit;
-        $values[] = $offset;
+        $query_values = array_merge($where_values, array($limit, $offset));
         
-        $sql = "SELECT l.*, 
-                       s.ip_address, s.location, s.device_type,
-                       COUNT(m.id) as total_messages
-                FROM {$this->tables['leads']} l
-                LEFT JOIN {$this->tables['chat_sessions']} s ON l.session_id = s.session_id
-                LEFT JOIN {$this->tables['chat_messages']} m ON l.session_id = m.session_id
-                WHERE $where_clause
-                GROUP BY l.id
-                ORDER BY l.created_at DESC
-                LIMIT %d OFFSET %d";
+        return $wpdb->get_results($wpdb->prepare($query, $query_values));
+    }
+    
+    /**
+     * Drop all tables (for uninstall)
+     */
+    public function drop_tables() {
+        global $wpdb;
         
-        return $this->wpdb->get_results(
-            $this->wpdb->prepare($sql, ...$values)
+        $tables = array(
+            'analytics',
+            'leads', 
+            'user_interactions',
+            'chat_messages',
+            'chat_sessions'
         );
-    }
-    
-    /**
-     * Get analytics data
-     */
-    public function get_analytics_data($metric_name, $date_from, $date_to) {
-        return $this->wpdb->get_results(
-            $this->wpdb->prepare(
-                "SELECT * FROM {$this->tables['analytics']} 
-                WHERE metric_name = %s 
-                AND date BETWEEN %s AND %s 
-                ORDER BY date ASC",
-                $metric_name,
-                $date_from,
-                $date_to
-            )
-        );
-    }
-    
-    /**
-     * Store analytics metric
-     */
-    public function store_analytics_metric($date, $metric_name, $metric_value, $metric_type = 'counter', $dimensions = null) {
-        return $this->wpdb->replace(
-            $this->tables['analytics'],
-            array(
-                'date' => $date,
-                'metric_name' => $metric_name,
-                'metric_value' => $metric_value,
-                'metric_type' => $metric_type,
-                'dimensions' => $dimensions ? json_encode($dimensions) : null,
-            ),
-            array('%s', '%s', '%f', '%s', '%s')
-        );
-    }
-    
-    /**
-     * Generate unique session ID
-     */
-    private function generate_session_id() {
-        return 'biic_' . uniqid() . '_' . wp_generate_password(8, false);
-    }
-    
-    /**
-     * Get user IP address
-     */
-    private function get_user_ip() {
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            return $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            return $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+        
+        foreach ($tables as $table) {
+            $wpdb->query("DROP TABLE IF EXISTS {$this->table_prefix}{$table}");
         }
-    }
-    
-    /**
-     * Clean up old sessions
-     */
-    public function cleanup_old_sessions($days = 30) {
-        $date_threshold = date('Y-m-d H:i:s', strtotime("-$days days"));
-        
-        // Delete old sessions and related data
-        $this->wpdb->query(
-            $this->wpdb->prepare(
-                "DELETE FROM {$this->tables['chat_sessions']} 
-                WHERE last_activity < %s AND is_active = 0",
-                $date_threshold
-            )
-        );
-    }
-    
-    /**
-     * Get database statistics
-     */
-    public function get_database_stats() {
-        $stats = array();
-        
-        foreach ($this->tables as $key => $table) {
-            $count = $this->wpdb->get_var("SELECT COUNT(*) FROM $table");
-            $stats[$key] = (int) $count;
-        }
-        
-        return $stats;
     }
 }
