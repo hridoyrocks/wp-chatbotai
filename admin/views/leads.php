@@ -1,7 +1,7 @@
 <?php
 /**
  * Admin Leads Management View
- * Professional lead management interface
+ 
  */
 
 // Prevent direct access
