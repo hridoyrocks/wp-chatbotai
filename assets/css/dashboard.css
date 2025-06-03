@@ -1,0 +1,614 @@
+/* Banglay IELTS Chatbot Dashboard Specific Styles */
+/* assets/css/dashboard.css */
+
+/* Dashboard Layout */
+.biic-dashboard-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Dashboard Grid System */
+.biic-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.biic-dashboard-grid.biic-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.biic-dashboard-grid.biic-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.biic-dashboard-grid.biic-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Enhanced Dashboard Cards */
+.biic-dashboard-card {
+    background: var(--biic-admin-white);
+    border: 1px solid var(--biic-admin-gray-200);
+    border-radius: var(--biic-admin-border-radius-lg);
+    box-shadow: var(--biic-admin-shadow);
+    overflow: hidden;
+    transition: var(--biic-admin-transition);
+    position: relative;
+}
+
+.biic-dashboard-card:hover {
+    box-shadow: var(--biic-admin-shadow-lg);
+    transform: translateY(-2px);
+}
+
+.biic-dashboard-card.biic-loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.biic-dashboard-card.biic-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--biic-admin-gray-300);
+    border-top: 2px solid var(--biic-admin-primary);
+    border-radius: 50%;
+    animation: biic-spin 1s linear infinite;
+}
+
+/* Chart Cards */
+.biic-chart-card {
+    height: 400px;
+}
+
+.biic-chart-card .biic-card-content {
+    padding: 16px;
+    height: calc(100% - 60px);
+}
+
+.biic-chart-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.biic-chart-container canvas {
+    max-height: 100% !important;
+}
+
+/* Metric Cards */
+.biic-metric-card {
+    text-align: center;
+    padding: 32px 24px;
+    background: linear-gradient(135deg, var(--biic-admin-white) 0%, var(--biic-admin-gray-50) 100%);
+}
+
+.biic-metric-card .biic-metric-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.biic-metric-card .biic-metric-number {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--biic-admin-gray-900);
+    line-height: 1;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.biic-metric-card .biic-metric-label {
+    font-size: 14px;
+    color: var(--biic-admin-gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.biic-metric-change {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.biic-metric-change.positive {
+    color: var(--biic-admin-success);
+}
+
+.biic-metric-change.negative {
+    color: var(--biic-admin-danger);
+}
+
+.biic-metric-change .dashicons {
+    font-size: 16px;
+}
+
+/* Activity Feed */
+.biic-activity-feed {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.biic-activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--biic-admin-gray-200);
+    transition: var(--biic-admin-transition);
+}
+
+.biic-activity-item:hover {
+    background: var(--biic-admin-gray-50);
+}
+
+.biic-activity-item:last-child {
+    border-bottom: none;
+}
+
+.biic-activity-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.biic-activity-icon.message {
+    background: rgba(49, 130, 206, 0.1);
+    color: var(--biic-admin-info);
+}
+
+.biic-activity-icon.lead {
+    background: rgba(229, 62, 62, 0.1);
+    color: var(--biic-admin-primary);
+}
+
+.biic-activity-icon.conversion {
+    background: rgba(56, 161, 105, 0.1);
+    color: var(--biic-admin-success);
+}
+
+.biic-activity-content {
+    flex: 1;
+}
+
+.biic-activity-title {
+    font-weight: 500;
+    color: var(--biic-admin-gray-900);
+    margin-bottom: 4px;
+}
+
+.biic-activity-description {
+    font-size: 13px;
+    color: var(--biic-admin-gray-600);
+    line-height: 1.4;
+}
+
+.biic-activity-time {
+    font-size: 12px;
+    color: var(--biic-admin-gray-500);
+    margin-top: 4px;
+}
+
+/* Quick Actions Panel */
+.biic-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 20px;
+}
+
+.biic-quick-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 16px;
+    background: var(--biic-admin-white);
+    border: 2px solid var(--biic-admin-gray-200);
+    border-radius: var(--biic-admin-border-radius);
+    text-decoration: none;
+    color: var(--biic-admin-gray-700);
+    transition: var(--biic-admin-transition);
+    cursor: pointer;
+}
+
+.biic-quick-action:hover {
+    border-color: var(--biic-admin-primary);
+    color: var(--biic-admin-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--biic-admin-shadow);
+    text-decoration: none;
+}
+
+.biic-quick-action-icon {
+    font-size: 24px;
+}
+
+.biic-quick-action-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Performance Indicators */
+.biic-performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.biic-performance-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--biic-admin-gray-50);
+    border-radius: var(--biic-admin-border-radius);
+    border-left: 4px solid var(--biic-admin-gray-300);
+}
+
+.biic-performance-item.excellent {
+    border-left-color: var(--biic-admin-success);
+    background: rgba(56, 161, 105, 0.05);
+}
+
+.biic-performance-item.good {
+    border-left-color: var(--biic-admin-warning);
+    background: rgba(214, 158, 46, 0.05);
+}
+
+.biic-performance-item.poor {
+    border-left-color: var(--biic-admin-danger);
+    background: rgba(229, 62, 62, 0.05);
+}
+
+.biic-performance-icon {
+    font-size: 20px;
+    color: var(--biic-admin-gray-600);
+}
+
+.biic-performance-content {
+    flex: 1;
+}
+
+.biic-performance-label {
+    font-size: 12px;
+    color: var(--biic-admin-gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.biic-performance-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--biic-admin-gray-900);
+}
+
+/* Real-time Status */
+.biic-realtime-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--biic-admin-gray-50);
+    border-radius: var(--biic-admin-border-radius);
+    margin-bottom: 20px;
+}
+
+.biic-realtime-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--biic-admin-success);
+    animation: biic-pulse 2s infinite;
+}
+
+.biic-realtime-text {
+    font-size: 14px;
+    color: var(--biic-admin-gray-700);
+    font-weight: 500;
+}
+
+.biic-realtime-count {
+    font-weight: 600;
+    color: var(--biic-admin-primary);
+}
+
+/* Progress Bars */
+.biic-progress-bar {
+    height: 8px;
+    background: var(--biic-admin-gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+.biic-progress-fill {
+    height: 100%;
+    background: var(--biic-admin-primary);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.biic-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    animation: biic-shimmer 2s infinite;
+}
+
+/* Data Tables in Dashboard */
+.biic-dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.biic-dashboard-table th,
+.biic-dashboard-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--biic-admin-gray-200);
+}
+
+.biic-dashboard-table th {
+    background: var(--biic-admin-gray-50);
+    font-weight: 600;
+    color: var(--biic-admin-gray-700);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.biic-dashboard-table tr:hover {
+    background: var(--biic-admin-gray-50);
+}
+
+.biic-dashboard-table .biic-status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.biic-status-badge.new {
+    background: rgba(49, 130, 206, 0.1);
+    color: var(--biic-admin-info);
+}
+
+.biic-status-badge.hot {
+    background: rgba(229, 62, 62, 0.1);
+    color: var(--biic-admin-danger);
+}
+
+.biic-status-badge.warm {
+    background: rgba(214, 158, 46, 0.1);
+    color: var(--biic-admin-warning);
+}
+
+.biic-status-badge.converted {
+    background: rgba(56, 161, 105, 0.1);
+    color: var(--biic-admin-success);
+}
+
+/* Dashboard Filters */
+.biic-dashboard-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--biic-admin-white);
+    border: 1px solid var(--biic-admin-gray-200);
+    border-radius: var(--biic-admin-border-radius);
+}
+
+.biic-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.biic-filter-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--biic-admin-gray-700);
+}
+
+.biic-filter-input {
+    padding: 6px 12px;
+    border: 1px solid var(--biic-admin-gray-300);
+    border-radius: var(--biic-admin-border-radius);
+    font-size: 14px;
+}
+
+.biic-filter-input:focus {
+    outline: none;
+    border-color: var(--biic-admin-primary);
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+}
+
+/* Export Options */
+.biic-export-options {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.biic-export-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--biic-admin-white);
+    border: 1px solid var(--biic-admin-gray-300);
+    border-radius: var(--biic-admin-border-radius);
+    font-size: 12px;
+    color: var(--biic-admin-gray-700);
+    text-decoration: none;
+    transition: var(--biic-admin-transition);
+}
+
+.biic-export-btn:hover {
+    background: var(--biic-admin-gray-50);
+    border-color: var(--biic-admin-primary);
+    color: var(--biic-admin-primary);
+    text-decoration: none;
+}
+
+/* Responsive Dashboard */
+@media (max-width: 1200px) {
+    .biic-dashboard-grid.biic-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .biic-dashboard-grid.biic-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .biic-dashboard-wrap {
+        padding: 16px;
+    }
+
+    .biic-dashboard-grid,
+    .biic-dashboard-grid.biic-grid-2,
+    .biic-dashboard-grid.biic-grid-3,
+    .biic-dashboard-grid.biic-grid-4 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .biic-dashboard-filters {
+        flex-direction: column;
+    }
+
+    .biic-quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .biic-performance-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .biic-export-options {
+        margin-left: 0;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .biic-metric-card {
+        padding: 24px 16px;
+    }
+
+    .biic-metric-card .biic-metric-number {
+        font-size: 32px;
+    }
+
+    .biic-quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .biic-dashboard-filters {
+        padding: 12px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .biic-dashboard-card {
+        background: var(--biic-admin-gray-800);
+        border-color: var(--biic-admin-gray-600);
+        color: var(--biic-admin-gray-100);
+    }
+
+    .biic-metric-card {
+        background: linear-gradient(135deg, var(--biic-admin-gray-800) 0%, var(--biic-admin-gray-700) 100%);
+    }
+
+    .biic-activity-item:hover {
+        background: var(--biic-admin-gray-700);
+    }
+
+    .biic-dashboard-table th {
+        background: var(--biic-admin-gray-700);
+        color: var(--biic-admin-gray-200);
+    }
+}
+
+/* Animations */
+@keyframes biic-shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Custom Scrollbars for Dashboard */
+.biic-activity-feed::-webkit-scrollbar {
+    width: 6px;
+}
+
+.biic-activity-feed::-webkit-scrollbar-track {
+    background: var(--biic-admin-gray-100);
+}
+
+.biic-activity-feed::-webkit-scrollbar-thumb {
+    background: var(--biic-admin-gray-400);
+    border-radius: 3px;
+}
+
+.biic-activity-feed::-webkit-scrollbar-thumb:hover {
+    background: var(--biic-admin-gray-500);
+}
+
+/* Print Styles */
+@media print {
+    .biic-dashboard-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .biic-chart-card {
+        height: auto;
+    }
+
+    .biic-dashboard-filters,
+    .biic-export-options,
+    .biic-header-actions {
+        display: none;
+    }
+}
