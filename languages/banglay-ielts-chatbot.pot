@@ -1,0 +1,1147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024 Mr Rocks
+# This file is distributed under the same license as the Banglay IELTS - AI Chatbot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Banglay IELTS - AI Chatbot 1.0.0\n"
+"Report-Msgid-Bugs-To: https://banglayelts.com\n"
+"POT-Creation-Date: 2024-12-08 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: banglay-ielts-chatbot.php:85
+msgid "Settings"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:86
+msgid "Dashboard"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:218
+msgid "Security check failed"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:282
+msgid "Banglay IELTS Chatbot"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:283
+msgid "BIIC Chatbot"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:291 admin/class-admin.php:58
+msgid "Dashboard"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:299
+msgid "Conversations"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:307
+msgid "Leads"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:315
+msgid "Analytics"
+msgstr ""
+
+#: banglay-ielts-chatbot.php:323
+msgid "Settings"
+msgstr ""
+
+#: admin/views/analytics.php:15
+msgid "Analytics & Reports"
+msgstr ""
+
+#: admin/views/analytics.php:20
+msgid "Export Report"
+msgstr ""
+
+#: admin/views/analytics.php:25
+msgid "Refresh Data"
+msgstr ""
+
+#: admin/views/analytics.php:34
+msgid "From:"
+msgstr ""
+
+#: admin/views/analytics.php:39
+msgid "To:"
+msgstr ""
+
+#: admin/views/analytics.php:44
+msgid "View By:"
+msgstr ""
+
+#: admin/views/analytics.php:46
+msgid "Daily"
+msgstr ""
+
+#: admin/views/analytics.php:47
+msgid "Weekly"
+msgstr ""
+
+#: admin/views/analytics.php:48
+msgid "Monthly"
+msgstr ""
+
+#: admin/views/analytics.php:54
+msgid "Apply Filters"
+msgstr ""
+
+#: admin/views/analytics.php:69
+msgid "Total Conversations"
+msgstr ""
+
+#: admin/views/analytics.php:78
+msgid "Total Messages"
+msgstr ""
+
+#: admin/views/analytics.php:87
+msgid "Generated Leads"
+msgstr ""
+
+#: admin/views/analytics.php:96
+msgid "Conversion Rate"
+msgstr ""
+
+#: admin/views/analytics.php:112
+msgid "Conversations Over Time"
+msgstr ""
+
+#: admin/views/analytics.php:124
+msgid "User Engagement Metrics"
+msgstr ""
+
+#: admin/views/analytics.php:136
+msgid "Top User Intents"
+msgstr ""
+
+#: admin/views/analytics.php:144
+msgid "Device Types & Locations"
+msgstr ""
+
+#: admin/views/analytics.php:179
+msgid "Performance Metrics"
+msgstr ""
+
+#: admin/views/analytics.php:186
+msgid "Response Time"
+msgstr ""
+
+#: admin/views/analytics.php:198
+msgid "User Satisfaction"
+msgstr ""
+
+#: admin/views/analytics.php:210
+msgid "Resolution Rate"
+msgstr ""
+
+#: admin/views/analytics.php:222
+msgid "Peak Hours"
+msgstr ""
+
+#: admin/views/analytics.php:237
+msgid "Detailed Reports"
+msgstr ""
+
+#: admin/views/analytics.php:242
+msgid "Conversation Flow"
+msgstr ""
+
+#: admin/views/analytics.php:247
+msgid "User Journey"
+msgstr ""
+
+#: admin/views/analytics.php:252
+msgid "Lead Funnel"
+msgstr ""
+
+#: admin/views/analytics.php:257
+msgid "AI Insights"
+msgstr ""
+
+#: admin/views/conversations.php:22
+msgid "Conversations Management"
+msgstr ""
+
+#: admin/views/conversations.php:27
+msgid "Export Conversations"
+msgstr ""
+
+#: admin/views/conversations.php:32
+msgid "Bulk Actions"
+msgstr ""
+
+#: admin/views/conversations.php:43
+msgid "Total Conversations"
+msgstr ""
+
+#: admin/views/conversations.php:53
+msgid "Active Sessions"
+msgstr ""
+
+#: admin/views/conversations.php:63
+msgid "Avg. Duration"
+msgstr ""
+
+#: admin/views/conversations.php:73
+msgid "Avg. Messages"
+msgstr ""
+
+#: admin/views/conversations.php:84
+msgid "Status:"
+msgstr ""
+
+#: admin/views/conversations.php:86
+msgid "All Status"
+msgstr ""
+
+#: admin/views/conversations.php:87
+msgid "Active"
+msgstr ""
+
+#: admin/views/conversations.php:88
+msgid "Completed"
+msgstr ""
+
+#: admin/views/conversations.php:89
+msgid "Abandoned"
+msgstr ""
+
+#: admin/views/conversations.php:93
+msgid "Lead Status:"
+msgstr ""
+
+#: admin/views/conversations.php:95
+msgid "All Leads"
+msgstr ""
+
+#: admin/views/conversations.php:96
+msgid "Hot"
+msgstr ""
+
+#: admin/views/conversations.php:97
+msgid "Warm"
+msgstr ""
+
+#: admin/views/conversations.php:98
+msgid "Cold"
+msgstr ""
+
+#: admin/views/conversations.php:99
+msgid "Converted"
+msgstr ""
+
+#: admin/views/conversations.php:103
+msgid "Device:"
+msgstr ""
+
+#: admin/views/conversations.php:105
+msgid "All Devices"
+msgstr ""
+
+#: admin/views/conversations.php:106
+msgid "Mobile"
+msgstr ""
+
+#: admin/views/conversations.php:107
+msgid "Desktop"
+msgstr ""
+
+#: admin/views/conversations.php:108
+msgid "Tablet"
+msgstr ""
+
+#: admin/views/conversations.php:112
+msgid "Date From:"
+msgstr ""
+
+#: admin/views/conversations.php:116
+msgid "Date To:"
+msgstr ""
+
+#: admin/views/conversations.php:123
+msgid "Apply Filters"
+msgstr ""
+
+#: admin/views/conversations.php:127
+msgid "Clear"
+msgstr ""
+
+#: admin/views/conversations.php:133
+msgid "Search by session ID, message content, or user info..."
+msgstr ""
+
+#: admin/views/conversations.php:176
+msgid "Anonymous User"
+msgstr ""
+
+#: admin/views/conversations.php:237
+msgid "View Conversation"
+msgstr ""
+
+#: admin/views/conversations.php:241
+msgid "Export"
+msgstr ""
+
+#: admin/views/conversations.php:245
+msgid "Call Lead"
+msgstr ""
+
+#: admin/views/conversations.php:254
+msgid "Add Note"
+msgstr ""
+
+#: admin/views/conversations.php:259
+msgid "Create Lead"
+msgstr ""
+
+#: admin/views/conversations.php:264
+msgid "Replay Conversation"
+msgstr ""
+
+#: admin/views/conversations.php:269
+msgid "Delete Conversation"
+msgstr ""
+
+#: admin/views/conversations.php:276
+msgid "Loading conversation..."
+msgstr ""
+
+#: admin/views/conversations.php:286
+msgid "No conversations found"
+msgstr ""
+
+#: admin/views/conversations.php:288
+msgid "Conversations will appear here as users interact with your chatbot."
+msgstr ""
+
+#: admin/views/conversations.php:290
+msgid "Configure Chatbot"
+msgstr ""
+
+#: admin/views/conversations.php:329
+msgid "Conversation Details"
+msgstr ""
+
+#: admin/views/conversations.php:338
+msgid "Add Conversation Note"
+msgstr ""
+
+#: admin/views/conversations.php:344
+msgid "Note:"
+msgstr ""
+
+#: admin/views/conversations.php:345
+msgid "Add your note about this conversation..."
+msgstr ""
+
+#: admin/views/conversations.php:349
+msgid "Add Note"
+msgstr ""
+
+#: admin/views/conversations.php:350
+msgid "Cancel"
+msgstr ""
+
+#: admin/views/leads.php:22
+msgid "Lead Management"
+msgstr ""
+
+#: admin/views/leads.php:27
+msgid "Export Leads"
+msgstr ""
+
+#: admin/views/leads.php:32
+msgid "Bulk Actions"
+msgstr ""
+
+#: admin/views/leads.php:43
+msgid "Total Leads"
+msgstr ""
+
+#: admin/views/leads.php:53
+msgid "Hot Leads"
+msgstr ""
+
+#: admin/views/leads.php:63
+msgid "Warm Leads"
+msgstr ""
+
+#: admin/views/leads.php:73
+msgid "Converted"
+msgstr ""
+
+#: admin/views/leads.php:83
+msgid "Conversion Rate"
+msgstr ""
+
+#: admin/views/leads.php:94
+msgid "Status:"
+msgstr ""
+
+#: admin/views/leads.php:96
+msgid "All Statuses"
+msgstr ""
+
+#: admin/views/leads.php:97
+msgid "New"
+msgstr ""
+
+#: admin/views/leads.php:98
+msgid "Contacted"
+msgstr ""
+
+#: admin/views/leads.php:99
+msgid "Qualified"
+msgstr ""
+
+#: admin/views/leads.php:100
+msgid "Converted"
+msgstr ""
+
+#: admin/views/leads.php:101
+msgid "Lost"
+msgstr ""
+
+#: admin/views/leads.php:105
+msgid "Course Interest:"
+msgstr ""
+
+#: admin/views/leads.php:107
+msgid "All Courses"
+msgstr ""
+
+#: admin/views/leads.php:108
+msgid "IELTS Comprehensive"
+msgstr ""
+
+#: admin/views/leads.php:109
+msgid "IELTS Focus"
+msgstr ""
+
+#: admin/views/leads.php:110
+msgid "IELTS Crash"
+msgstr ""
+
+#: admin/views/leads.php:111
+msgid "Online Course"
+msgstr ""
+
+#: admin/views/leads.php:112
+msgid "Study Abroad"
+msgstr ""
+
+#: admin/views/leads.php:150
+msgid "Score"
+msgstr ""
+
+#: admin/views/leads.php:156
+msgid "Contact Info"
+msgstr ""
+
+#: admin/views/leads.php:162
+msgid "Course Interest"
+msgstr ""
+
+#: admin/views/leads.php:168
+msgid "Status"
+msgstr ""
+
+#: admin/views/leads.php:174
+msgid "Source"
+msgstr ""
+
+#: admin/views/leads.php:180
+msgid "Created"
+msgstr ""
+
+#: admin/views/leads.php:186
+msgid "Actions"
+msgstr ""
+
+#: admin/views/leads.php:306
+msgid "View Details"
+msgstr ""
+
+#: admin/views/leads.php:310
+msgid "Edit Lead"
+msgstr ""
+
+#: admin/views/leads.php:315
+msgid "Call Lead"
+msgstr ""
+
+#: admin/views/leads.php:321
+msgid "Send Email"
+msgstr ""
+
+#: admin/views/leads.php:332
+msgid "Add Note"
+msgstr ""
+
+#: admin/views/leads.php:337
+msgid "Schedule Follow-up"
+msgstr ""
+
+#: admin/views/leads.php:342
+msgid "View Conversation"
+msgstr ""
+
+#: admin/views/leads.php:347
+msgid "Delete Lead"
+msgstr ""
+
+#: admin/views/leads.php:358
+msgid "No leads found"
+msgstr ""
+
+#: admin/views/leads.php:360
+msgid "Leads will appear here as users interact with your chatbot."
+msgstr ""
+
+#: admin/views/leads.php:362
+msgid "Configure Chatbot"
+msgstr ""
+
+#: admin/views/leads.php:385
+msgid "Lead Details"
+msgstr ""
+
+#: admin/views/leads.php:394
+msgid "Add Note"
+msgstr ""
+
+#: admin/views/leads.php:400
+msgid "Note:"
+msgstr ""
+
+#: admin/views/leads.php:401
+msgid "Enter your note here..."
+msgstr ""
+
+#: admin/views/leads.php:405
+msgid "Add Note"
+msgstr ""
+
+#: admin/views/leads.php:406
+msgid "Cancel"
+msgstr ""
+
+#: admin/views/leads.php:414
+msgid "Bulk Actions"
+msgstr ""
+
+#: admin/views/leads.php:420
+msgid "leads selected"
+msgstr ""
+
+#: admin/views/leads.php:426
+msgid "Update Status"
+msgstr ""
+
+#: admin/views/leads.php:431
+msgid "Assign Counselor"
+msgstr ""
+
+#: admin/views/leads.php:436
+msgid "Send Email Campaign"
+msgstr ""
+
+#: admin/views/leads.php:441
+msgid "Export Selected"
+msgstr ""
+
+#: admin/views/leads.php:446
+msgid "Delete Selected"
+msgstr ""
+
+#: admin/views/settings.php:19
+msgid "Chatbot Settings"
+msgstr ""
+
+#: admin/views/settings.php:24
+msgid "Reset to Defaults"
+msgstr ""
+
+#: admin/views/settings.php:29
+msgid "Export Settings"
+msgstr ""
+
+#: admin/views/settings.php:42
+msgid "General"
+msgstr ""
+
+#: admin/views/settings.php:48
+msgid "Appearance"
+msgstr ""
+
+#: admin/views/settings.php:54
+msgid "Behavior"
+msgstr ""
+
+#: admin/views/settings.php:60
+msgid "AI Integration"
+msgstr ""
+
+#: admin/views/settings.php:66
+msgid "Notifications"
+msgstr ""
+
+#: admin/views/settings.php:72
+msgid "Advanced"
+msgstr ""
+
+#: admin/views/settings.php:82
+msgid "General Settings"
+msgstr ""
+
+#: admin/views/settings.php:83
+msgid "Basic chatbot configuration and enable/disable options."
+msgstr ""
+
+#: admin/views/settings.php:87
+msgid "Chatbot Status"
+msgstr ""
+
+#: admin/views/settings.php:97
+msgid "Enable Chatbot"
+msgstr ""
+
+#: admin/views/settings.php:98
+msgid "Turn the chatbot on or off across your entire website."
+msgstr ""
+
+#: admin/views/settings.php:109
+msgid "Auto Greeting"
+msgstr ""
+
+#: admin/views/settings.php:110
+msgid "Automatically show greeting message when users visit the site."
+msgstr ""
+
+#: admin/views/settings.php:116
+msgid "Welcome Message"
+msgstr ""
+
+#: admin/views/settings.php:119
+msgid "Greeting Text"
+msgstr ""
+
+#: admin/views/settings.php:125
+msgid "This message will be shown when the chatbot first loads."
+msgstr ""
+
+#: admin/views/settings.php:130
+msgid "Business Hours"
+msgstr ""
+
+#: admin/views/settings.php:134
+msgid "Start Time"
+msgstr ""
+
+#: admin/views/settings.php:139
+msgid "End Time"
+msgstr ""
+
+#: admin/views/settings.php:144
+msgid "Working Days"
+msgstr ""
+
+#: admin/views/settings.php:149
+msgid "Monday"
+msgstr ""
+
+#: admin/views/settings.php:150
+msgid "Tuesday"
+msgstr ""
+
+#: admin/views/settings.php:151
+msgid "Wednesday"
+msgstr ""
+
+#: admin/views/settings.php:152
+msgid "Thursday"
+msgstr ""
+
+#: admin/views/settings.php:153
+msgid "Friday"
+msgstr ""
+
+#: admin/views/settings.php:154
+msgid "Saturday"
+msgstr ""
+
+#: admin/views/settings.php:155
+msgid "Sunday"
+msgstr ""
+
+#: admin/views/settings.php:173
+msgid "Appearance Settings"
+msgstr ""
+
+#: admin/views/settings.php:174
+msgid "Customize the look and feel of your chatbot."
+msgstr ""
+
+#: admin/views/settings.php:178
+msgid "Position & Layout"
+msgstr ""
+
+#: admin/views/settings.php:182
+msgid "Chat Position"
+msgstr ""
+
+#: admin/views/settings.php:184
+msgid "Bottom Right"
+msgstr ""
+
+#: admin/views/settings.php:185
+msgid "Bottom Left"
+msgstr ""
+
+#: admin/views/settings.php:186
+msgid "Top Right"
+msgstr ""
+
+#: admin/views/settings.php:187
+msgid "Top Left"
+msgstr ""
+
+#: admin/views/settings.php:192
+msgid "Theme"
+msgstr ""
+
+#: admin/views/settings.php:194
+msgid "Modern"
+msgstr ""
+
+#: admin/views/settings.php:195
+msgid "Minimal"
+msgstr ""
+
+#: admin/views/settings.php:196
+msgid "Dark"
+msgstr ""
+
+#: admin/views/settings.php:197
+msgid "Classic"
+msgstr ""
+
+#: admin/views/settings.php:204
+msgid "Colors & Branding"
+msgstr ""
+
+#: admin/views/settings.php:208
+msgid "Primary Color"
+msgstr ""
+
+#: admin/views/settings.php:213
+msgid "Font Family"
+msgstr ""
+
+#: admin/views/settings.php:215
+msgid "Default"
+msgstr ""
+
+#: admin/views/settings.php:223
+msgid "Animation & Effects"
+msgstr ""
+
+#: admin/views/settings.php:233
+msgid "Enable Animations"
+msgstr ""
+
+#: admin/views/settings.php:234
+msgid "Smooth animations for better user experience."
+msgstr ""
+
+#: admin/views/settings.php:245
+msgid "Sound Notifications"
+msgstr ""
+
+#: admin/views/settings.php:246
+msgid "Play notification sounds for new messages."
+msgstr ""
+
+#: admin/views/settings.php:255
+msgid "Behavior Settings"
+msgstr ""
+
+#: admin/views/settings.php:256
+msgid "Configure how the chatbot behaves and responds."
+msgstr ""
+
+#: admin/views/settings.php:260
+msgid "Response Settings"
+msgstr ""
+
+#: admin/views/settings.php:264
+msgid "Typing Speed (ms)"
+msgstr ""
+
+#: admin/views/settings.php:266
+msgid "Delay between words when typing responses."
+msgstr ""
+
+#: admin/views/settings.php:271
+msgid "Max Message Length"
+msgstr ""
+
+#: admin/views/settings.php:273
+msgid "Maximum characters per user message."
+msgstr ""
+
+#: admin/views/settings.php:279
+msgid "File Upload"
+msgstr ""
+
+#: admin/views/settings.php:289
+msgid "Allow File Upload"
+msgstr ""
+
+#: admin/views/settings.php:290
+msgid "Let users upload files during conversations."
+msgstr ""
+
+#: admin/views/settings.php:296
+msgid "Timezone"
+msgstr ""
+
+#: admin/views/settings.php:299
+msgid "Timezone"
+msgstr ""
+
+#: admin/views/settings.php:309
+msgid "AI Integration"
+msgstr ""
+
+#: admin/views/settings.php:310
+msgid "Configure OpenAI integration for intelligent responses."
+msgstr ""
+
+#: admin/views/settings.php:314
+msgid "OpenAI Configuration"
+msgstr ""
+
+#: admin/views/settings.php:317
+msgid "OpenAI API Key"
+msgstr ""
+
+#: admin/views/settings.php:326
+msgid "AI Model"
+msgstr ""
+
+#: admin/views/settings.php:334
+msgid "Creativity (0-1)"
+msgstr ""
+
+#: admin/views/settings.php:336
+msgid "Higher values = more creative responses."
+msgstr ""
+
+#: admin/views/settings.php:342
+msgid "Test AI Connection"
+msgstr ""
+
+#: admin/views/settings.php:350
+msgid "Notification Settings"
+msgstr ""
+
+#: admin/views/settings.php:351
+msgid "Configure email notifications and alerts."
+msgstr ""
+
+#: admin/views/settings.php:355
+msgid "Lead Notifications"
+msgstr ""
+
+#: admin/views/settings.php:365
+msgid "New Lead Alerts"
+msgstr ""
+
+#: admin/views/settings.php:366
+msgid "Send email notifications when new leads are captured."
+msgstr ""
+
+#: admin/views/settings.php:371
+msgid "Notification Email"
+msgstr ""
+
+#: admin/views/settings.php:373
+msgid "Email address to receive notifications."
+msgstr ""
+
+#: admin/views/settings.php:378
+msgid "Email Templates"
+msgstr ""
+
+#: admin/views/settings.php:381
+msgid "New Lead Email Subject"
+msgstr ""
+
+#: admin/views/settings.php:385
+msgid "New Lead Email Template"
+msgstr ""
+
+#: admin/views/settings.php:387
+msgid "Use placeholders: {name}, {phone}, {email}, {course_interest}"
+msgstr ""
+
+#: admin/views/settings.php:394
+msgid "Advanced Settings"
+msgstr ""
+
+#: admin/views/settings.php:395
+msgid "Advanced configuration options for developers."
+msgstr ""
+
+#: admin/views/settings.php:399
+msgid "Analytics & Data"
+msgstr ""
+
+#: admin/views/settings.php:409
+msgid "Enable Analytics"
+msgstr ""
+
+#: admin/views/settings.php:410
+msgid "Track user interactions and conversation analytics."
+msgstr ""
+
+#: admin/views/settings.php:416
+msgid "Data Retention (Days)"
+msgstr ""
+
+#: admin/views/settings.php:418
+msgid "How long to keep conversation data."
+msgstr ""
+
+#: admin/views/settings.php:423
+msgid "API Rate Limit"
+msgstr ""
+
+#: admin/views/settings.php:425
+msgid "Requests per minute per user."
+msgstr ""
+
+#: admin/views/settings.php:431
+msgid "Custom CSS"
+msgstr ""
+
+#: admin/views/settings.php:434
+msgid "Custom CSS Code"
+msgstr ""
+
+#: admin/views/settings.php:436
+msgid "Add custom CSS to override chatbot styles."
+msgstr ""
+
+#: admin/views/settings.php:441
+msgid "Database Management"
+msgstr ""
+
+#: admin/views/settings.php:451
+msgid "Remove Data on Uninstall"
+msgstr ""
+
+#: admin/views/settings.php:452
+msgid "⚠️ WARNING: This will permanently delete all chatbot data when plugin is uninstalled."
+msgstr ""
+
+#: admin/views/settings.php:457
+msgid "Export All Data"
+msgstr ""
+
+#: admin/views/settings.php:462
+msgid "Cleanup Old Data"
+msgstr ""
+
+#: admin/views/settings.php:472
+msgid "Save Settings"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:27
+msgid "চ্যাট খুলুন"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:46
+msgid "Banglay IELTS সহায়ক"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:49
+msgid "অনলাইনে আছি"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:52
+msgid "চ্যাট বন্ধ করুন"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:65
+msgid "আপনার প্রশ্ন লিখুন..."
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:72
+msgid "ফাইল আপলোড"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:80
+msgid "পাঠান"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:88
+msgid "Made with"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:91
+msgid "Rocks"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:102
+msgid "আরও তথ্য পেতে যোগাযোগের বিস্তারিত দিন"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:106
+msgid "নাম"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:107
+msgid "আপনার নাম লিখুন"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:111
+msgid "ফোন নম্বর"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:115
+msgid "ইমেইল"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:116
+msgid "আপনার ইমেইল (ঐচ্ছিক)"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:120
+msgid "কোর্সের আগ্রহ"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:122
+msgid "কোর্স নির্বাচন করুন"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:123
+msgid "IELTS Comprehensive (4.5 months)"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:124
+msgid "IELTS Focus (3 months)"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:125
+msgid "IELTS Crash (1.5 months)"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:126
+msgid "Online Course (2 months)"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:127
+msgid "Speaking Only"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:128
+msgid "Study Abroad Consultation"
+msgstr ""
+
+#: frontend/templates/chatbot-widget.php:132
+msgid "ফ্রি কনসালটেশন বুক করুন"
+msgstr ""
+
+#: includes/class-ai-integration.php:245
+msgid "দুঃখিত, একটি সমস্যা হয়েছে।"
+msgstr ""
+
+#: includes/class-ai-integration.php:246
+msgid "আমরা এখন অফলাইনে আছি।"
+msgstr ""
+
+#: includes/class-ai-integration.php:247
+msgid "বট টাইপ করছে..."
+msgstr ""
+
+#: includes/class-ai-integration.php:248
+msgid "Made with Love Rocks"
+msgstr ""
+
+#: includes/class-user-tracking.php:89
+msgid "Security check failed"
+msgstr ""
+
+#: includes/class-user-tracking.php:267
+msgid "Unauthorized"
+msgstr ""
+
+#: admin/class-admin.php:412
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: admin/class-admin.php:612
+msgid "Unauthorized"
+msgstr ""
+
+#: admin/class-admin.php:685
+msgid "Conversation deleted successfully"
+msgstr ""
+
+#: admin/class-admin.php:687
+msgid "Failed to delete conversation"
+msgstr ""
+
+#: admin/class-admin.php:709
+msgid "Lead status updated successfully"
+msgstr ""
+
+#: admin/class-admin.php:711
+msgid "Failed to update lead status"
+msgstr ""
+
+#: includes/class-lead-management.php:514
+msgid "Unauthorized"
+msgstr ""
+
+#: includes/class-lead-management.php:525
+msgid "Lead status updated successfully"
+msgstr ""
+
+#: includes/class-lead-management.php:527
+msgid "Failed to update lead status"
+msgstr ""
+
+#: includes/class-lead-management.php:543
+msgid "Note added successfully"
+msgstr ""
+
+#: includes/class-lead-management.php:545
+msgid "Failed to add note"
+msgstr ""
+
+#: includes/class-lead-management.php:561
+msgid "Follow-up scheduled successfully"
+msgstr ""
+
+#: includes/class-lead-management.php:563
+msgid "Failed to schedule follow-up"
+msgstr ""
+
+#: includes/class-analytics.php:745
+msgid "Unauthorized"
+msgstr ""

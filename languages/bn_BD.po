@@ -1,0 +1,1287 @@
+# Bengali (Bangladesh) Language File for Banglay IELTS Chatbot
+# Copyright (C) 2024 Mr Rocks
+# This file is distributed under the same license as the Banglay IELTS - AI Chatbot package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Banglay IELTS - AI Chatbot 1.0.0\n"
+"Report-Msgid-Bugs-To: https://banglayelts.com\n"
+"POT-Creation-Date: 2024-12-08 12:00+0000\n"
+"PO-Revision-Date: 2024-12-08 12:00+0000\n"
+"Last-Translator: Mr Rocks <admin@banglayelts.com>\n"
+"Language-Team: Bengali <admin@banglayelts.com>\n"
+"Language: bn_BD\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0\n"
+
+#: banglay-ielts-chatbot.php:85
+msgid "Settings"
+msgstr "সেটিংস"
+
+#: banglay-ielts-chatbot.php:86
+msgid "Dashboard"
+msgstr "ড্যাশবোর্ড"
+
+#: banglay-ielts-chatbot.php:218
+msgid "Security check failed"
+msgstr "নিরাপত্তা পরীক্ষা ব্যর্থ হয়েছে"
+
+#: banglay-ielts-chatbot.php:282
+msgid "Banglay IELTS Chatbot"
+msgstr "বাংলায় আইএলটিএস চ্যাটবট"
+
+#: banglay-ielts-chatbot.php:283
+msgid "BIIC Chatbot"
+msgstr "বিআইআইসি চ্যাটবট"
+
+#: banglay-ielts-chatbot.php:291 admin/class-admin.php:58
+msgid "Dashboard"
+msgstr "ড্যাশবোর্ড"
+
+#: banglay-ielts-chatbot.php:299
+msgid "Conversations"
+msgstr "কথোপকথন"
+
+#: banglay-ielts-chatbot.php:307
+msgid "Leads"
+msgstr "লিড"
+
+#: banglay-ielts-chatbot.php:315
+msgid "Analytics"
+msgstr "অ্যানালিটিক্স"
+
+#: banglay-ielts-chatbot.php:323
+msgid "Settings"
+msgstr "সেটিংস"
+
+#: admin/views/analytics.php:15
+msgid "Analytics & Reports"
+msgstr "অ্যানালিটিক্স ও রিপোর্ট"
+
+#: admin/views/analytics.php:20
+msgid "Export Report"
+msgstr "রিপোর্ট রপ্তানি"
+
+#: admin/views/analytics.php:25
+msgid "Refresh Data"
+msgstr "ডেটা রিফ্রেশ"
+
+#: admin/views/analytics.php:34
+msgid "From:"
+msgstr "থেকে:"
+
+#: admin/views/analytics.php:39
+msgid "To:"
+msgstr "পর্যন্ত:"
+
+#: admin/views/analytics.php:44
+msgid "View By:"
+msgstr "দেখুন:"
+
+#: admin/views/analytics.php:46
+msgid "Daily"
+msgstr "দৈনিক"
+
+#: admin/views/analytics.php:47
+msgid "Weekly"
+msgstr "সাপ্তাহিক"
+
+#: admin/views/analytics.php:48
+msgid "Monthly"
+msgstr "মাসিক"
+
+#: admin/views/analytics.php:54
+msgid "Apply Filters"
+msgstr "ফিল্টার প্রয়োগ করুন"
+
+#: admin/views/analytics.php:69
+msgid "Total Conversations"
+msgstr "মোট কথোপকথন"
+
+#: admin/views/analytics.php:78
+msgid "Total Messages"
+msgstr "মোট বার্তা"
+
+#: admin/views/analytics.php:87
+msgid "Generated Leads"
+msgstr "জেনারেট করা লিড"
+
+#: admin/views/analytics.php:96
+msgid "Conversion Rate"
+msgstr "রূপান্তরের হার"
+
+#: admin/views/analytics.php:112
+msgid "Conversations Over Time"
+msgstr "সময়ের সাথে কথোপকথন"
+
+#: admin/views/analytics.php:124
+msgid "User Engagement Metrics"
+msgstr "ব্যবহারকারী সম্পৃক্ততার মেট্রিক্স"
+
+#: admin/views/analytics.php:136
+msgid "Top User Intents"
+msgstr "শীর্ষ ব্যবহারকারী উদ্দেশ্য"
+
+#: admin/views/analytics.php:144
+msgid "Device Types & Locations"
+msgstr "ডিভাইসের ধরন ও অবস্থান"
+
+#: admin/views/analytics.php:179
+msgid "Performance Metrics"
+msgstr "পারফরম্যান্স মেট্রিক্স"
+
+#: admin/views/analytics.php:186
+msgid "Response Time"
+msgstr "প্রতিক্রিয়ার সময়"
+
+#: admin/views/analytics.php:198
+msgid "User Satisfaction"
+msgstr "ব্যবহারকারী সন্তুষ্টি"
+
+#: admin/views/analytics.php:210
+msgid "Resolution Rate"
+msgstr "সমাধানের হার"
+
+#: admin/views/analytics.php:222
+msgid "Peak Hours"
+msgstr "পিক আওয়ার"
+
+#: admin/views/analytics.php:237
+msgid "Detailed Reports"
+msgstr "বিস্তারিত রিপোর্ট"
+
+#: admin/views/analytics.php:242
+msgid "Conversation Flow"
+msgstr "কথোপকথনের প্রবাহ"
+
+#: admin/views/analytics.php:247
+msgid "User Journey"
+msgstr "ব্যবহারকারীর যাত্রা"
+
+#: admin/views/analytics.php:252
+msgid "Lead Funnel"
+msgstr "লিড ফানেল"
+
+#: admin/views/analytics.php:257
+msgid "AI Insights"
+msgstr "এআই অন্তর্দৃষ্টি"
+
+#: admin/views/conversations.php:22
+msgid "Conversations Management"
+msgstr "কথোপকথন ব্যবস্থাপনা"
+
+#: admin/views/conversations.php:27
+msgid "Export Conversations"
+msgstr "কথোপকথন রপ্তানি"
+
+#: admin/views/conversations.php:32
+msgid "Bulk Actions"
+msgstr "বাল্ক অ্যাকশন"
+
+#: admin/views/conversations.php:43
+msgid "Total Conversations"
+msgstr "মোট কথোপকথন"
+
+#: admin/views/conversations.php:53
+msgid "Active Sessions"
+msgstr "সক্রিয় সেশন"
+
+#: admin/views/conversations.php:63
+msgid "Avg. Duration"
+msgstr "গড় সময়কাল"
+
+#: admin/views/conversations.php:73
+msgid "Avg. Messages"
+msgstr "গড় বার্তা"
+
+#: admin/views/conversations.php:84
+msgid "Status:"
+msgstr "অবস্থা:"
+
+#: admin/views/conversations.php:86
+msgid "All Status"
+msgstr "সব অবস্থা"
+
+#: admin/views/conversations.php:87
+msgid "Active"
+msgstr "সক্রিয়"
+
+#: admin/views/conversations.php:88
+msgid "Completed"
+msgstr "সম্পূর্ণ"
+
+#: admin/views/conversations.php:89
+msgid "Abandoned"
+msgstr "পরিত্যক্ত"
+
+#: admin/views/conversations.php:93
+msgid "Lead Status:"
+msgstr "লিড অবস্থা:"
+
+#: admin/views/conversations.php:95
+msgid "All Leads"
+msgstr "সব লিড"
+
+#: admin/views/conversations.php:96
+msgid "Hot"
+msgstr "হট"
+
+#: admin/views/conversations.php:97
+msgid "Warm"
+msgstr "ওয়ার্ম"
+
+#: admin/views/conversations.php:98
+msgid "Cold"
+msgstr "কোল্ড"
+
+#: admin/views/conversations.php:99
+msgid "Converted"
+msgstr "রূপান্তরিত"
+
+#: admin/views/conversations.php:103
+msgid "Device:"
+msgstr "ডিভাইস:"
+
+#: admin/views/conversations.php:105
+msgid "All Devices"
+msgstr "সব ডিভাইস"
+
+#: admin/views/conversations.php:106
+msgid "Mobile"
+msgstr "মোবাইল"
+
+#: admin/views/conversations.php:107
+msgid "Desktop"
+msgstr "ডেস্কটপ"
+
+#: admin/views/conversations.php:108
+msgid "Tablet"
+msgstr "ট্যাবলেট"
+
+#: admin/views/conversations.php:112
+msgid "Date From:"
+msgstr "তারিখ থেকে:"
+
+#: admin/views/conversations.php:116
+msgid "Date To:"
+msgstr "তারিখ পর্যন্ত:"
+
+#: admin/views/conversations.php:123
+msgid "Apply Filters"
+msgstr "ফিল্টার প্রয়োগ করুন"
+
+#: admin/views/conversations.php:127
+msgid "Clear"
+msgstr "ক্লিয়ার"
+
+#: admin/views/conversations.php:133
+msgid "Search by session ID, message content, or user info..."
+msgstr "সেশন আইডি, বার্তার বিষয়বস্তু বা ব্যবহারকারীর তথ্য দিয়ে অনুসন্ধান করুন..."
+
+#: admin/views/conversations.php:176
+msgid "Anonymous User"
+msgstr "বেনামী ব্যবহারকারী"
+
+#: admin/views/conversations.php:237
+msgid "View Conversation"
+msgstr "কথোপকথন দেখুন"
+
+#: admin/views/conversations.php:241
+msgid "Export"
+msgstr "রপ্তানি"
+
+#: admin/views/conversations.php:245
+msgid "Call Lead"
+msgstr "লিডকে কল করুন"
+
+#: admin/views/conversations.php:254
+msgid "Add Note"
+msgstr "নোট যোগ করুন"
+
+#: admin/views/conversations.php:259
+msgid "Create Lead"
+msgstr "লিড তৈরি করুন"
+
+#: admin/views/conversations.php:264
+msgid "Replay Conversation"
+msgstr "কথোপকথন পুনরায় চালান"
+
+#: admin/views/conversations.php:269
+msgid "Delete Conversation"
+msgstr "কথোপকথন মুছুন"
+
+#: admin/views/conversations.php:276
+msgid "Loading conversation..."
+msgstr "কথোপকথন লোড হচ্ছে..."
+
+#: admin/views/conversations.php:286
+msgid "No conversations found"
+msgstr "কোন কথোপকথন পাওয়া যায়নি"
+
+#: admin/views/conversations.php:288
+msgid "Conversations will appear here as users interact with your chatbot."
+msgstr "ব্যবহারকারীরা আপনার চ্যাটবটের সাথে যোগাযোগ করার সাথে সাথে কথোপকথন এখানে প্রদর্শিত হবে।"
+
+#: admin/views/conversations.php:290
+msgid "Configure Chatbot"
+msgstr "চ্যাটবট কনফিগার করুন"
+
+#: admin/views/conversations.php:329
+msgid "Conversation Details"
+msgstr "কথোপকথনের বিবরণ"
+
+#: admin/views/conversations.php:338
+msgid "Add Conversation Note"
+msgstr "কথোপকথনের নোট যোগ করুন"
+
+#: admin/views/conversations.php:344
+msgid "Note:"
+msgstr "নোট:"
+
+#: admin/views/conversations.php:345
+msgid "Add your note about this conversation..."
+msgstr "এই কথোপকথন সম্পর্কে আপনার নোট যোগ করুন..."
+
+#: admin/views/conversations.php:349
+msgid "Add Note"
+msgstr "নোট যোগ করুন"
+
+#: admin/views/conversations.php:350
+msgid "Cancel"
+msgstr "বাতিল"
+
+#: admin/views/leads.php:22
+msgid "Lead Management"
+msgstr "লিড ব্যবস্থাপনা"
+
+#: admin/views/leads.php:27
+msgid "Export Leads"
+msgstr "লিড রপ্তানি"
+
+#: admin/views/leads.php:32
+msgid "Bulk Actions"
+msgstr "বাল্ক অ্যাকশন"
+
+#: admin/views/leads.php:43
+msgid "Total Leads"
+msgstr "মোট লিড"
+
+#: admin/views/leads.php:53
+msgid "Hot Leads"
+msgstr "হট লিড"
+
+#: admin/views/leads.php:63
+msgid "Warm Leads"
+msgstr "ওয়ার্ম লিড"
+
+#: admin/views/leads.php:73
+msgid "Converted"
+msgstr "রূপান্তরিত"
+
+#: admin/views/leads.php:83
+msgid "Conversion Rate"
+msgstr "রূপান্তরের হার"
+
+#: admin/views/leads.php:94
+msgid "Status:"
+msgstr "অবস্থা:"
+
+#: admin/views/leads.php:96
+msgid "All Statuses"
+msgstr "সব অবস্থা"
+
+#: admin/views/leads.php:97
+msgid "New"
+msgstr "নতুন"
+
+#: admin/views/leads.php:98
+msgid "Contacted"
+msgstr "যোগাযোগ করা হয়েছে"
+
+#: admin/views/leads.php:99
+msgid "Qualified"
+msgstr "যোগ্য"
+
+#: admin/views/leads.php:100
+msgid "Converted"
+msgstr "রূপান্তরিত"
+
+#: admin/views/leads.php:101
+msgid "Lost"
+msgstr "হারিয়ে গেছে"
+
+#: admin/views/leads.php:105
+msgid "Course Interest:"
+msgstr "কোর্সের আগ্রহ:"
+
+#: admin/views/leads.php:107
+msgid "All Courses"
+msgstr "সব কোর্স"
+
+#: admin/views/leads.php:108
+msgid "IELTS Comprehensive"
+msgstr "আইএলটিএস কমপ্রিহেনসিভ"
+
+#: admin/views/leads.php:109
+msgid "IELTS Focus"
+msgstr "আইএলটিএস ফোকাস"
+
+#: admin/views/leads.php:110
+msgid "IELTS Crash"
+msgstr "আইএলটিএস ক্র্যাশ"
+
+#: admin/views/leads.php:111
+msgid "Online Course"
+msgstr "অনলাইন কোর্স"
+
+#: admin/views/leads.php:112
+msgid "Study Abroad"
+msgstr "বিদেশে অধ্যয়ন"
+
+#: admin/views/leads.php:150
+msgid "Score"
+msgstr "স্কোর"
+
+#: admin/views/leads.php:156
+msgid "Contact Info"
+msgstr "যোগাযোগের তথ্য"
+
+#: admin/views/leads.php:162
+msgid "Course Interest"
+msgstr "কোর্সের আগ্রহ"
+
+#: admin/views/leads.php:168
+msgid "Status"
+msgstr "অবস্থা"
+
+#: admin/views/leads.php:174
+msgid "Source"
+msgstr "উৎস"
+
+#: admin/views/leads.php:180
+msgid "Created"
+msgstr "তৈরি"
+
+#: admin/views/leads.php:186
+msgid "Actions"
+msgstr "অ্যাকশন"
+
+#: admin/views/leads.php:306
+msgid "View Details"
+msgstr "বিবরণ দেখুন"
+
+#: admin/views/leads.php:310
+msgid "Edit Lead"
+msgstr "লিড সম্পাদনা"
+
+#: admin/views/leads.php:315
+msgid "Call Lead"
+msgstr "লিডকে কল করুন"
+
+#: admin/views/leads.php:321
+msgid "Send Email"
+msgstr "ইমেইল পাঠান"
+
+#: admin/views/leads.php:332
+msgid "Add Note"
+msgstr "নোট যোগ করুন"
+
+#: admin/views/leads.php:337
+msgid "Schedule Follow-up"
+msgstr "ফলো-আপ সময়সূচী"
+
+#: admin/views/leads.php:342
+msgid "View Conversation"
+msgstr "কথোপকথন দেখুন"
+
+#: admin/views/leads.php:347
+msgid "Delete Lead"
+msgstr "লিড মুছুন"
+
+#: admin/views/leads.php:358
+msgid "No leads found"
+msgstr "কোন লিড পাওয়া যায়নি"
+
+#: admin/views/leads.php:360
+msgid "Leads will appear here as users interact with your chatbot."
+msgstr "ব্যবহারকারীরা আপনার চ্যাটবটের সাথে যোগাযোগ করার সাথে সাথে লিড এখানে প্রদর্শিত হবে।"
+
+#: admin/views/leads.php:362
+msgid "Configure Chatbot"
+msgstr "চ্যাটবট কনফিগার করুন"
+
+#: admin/views/leads.php:385
+msgid "Lead Details"
+msgstr "লিডের বিবরণ"
+
+#: admin/views/leads.php:394
+msgid "Add Note"
+msgstr "নোট যোগ করুন"
+
+#: admin/views/leads.php:400
+msgid "Note:"
+msgstr "নোট:"
+
+#: admin/views/leads.php:401
+msgid "Enter your note here..."
+msgstr "এখানে আপনার নোট লিখুন..."
+
+#: admin/views/leads.php:405
+msgid "Add Note"
+msgstr "নোট যোগ করুন"
+
+#: admin/views/leads.php:406
+msgid "Cancel"
+msgstr "বাতিল"
+
+#: admin/views/leads.php:414
+msgid "Bulk Actions"
+msgstr "বাল্ক অ্যাকশন"
+
+#: admin/views/leads.php:420
+msgid "leads selected"
+msgstr "লিড নির্বাচিত"
+
+#: admin/views/leads.php:426
+msgid "Update Status"
+msgstr "অবস্থা আপডেট"
+
+#: admin/views/leads.php:431
+msgid "Assign Counselor"
+msgstr "কাউন্সেলর নিয়োগ"
+
+#: admin/views/leads.php:436
+msgid "Send Email Campaign"
+msgstr "ইমেইল ক্যাম্পেইন পাঠান"
+
+#: admin/views/leads.php:441
+msgid "Export Selected"
+msgstr "নির্বাচিত রপ্তানি"
+
+#: admin/views/leads.php:446
+msgid "Delete Selected"
+msgstr "নির্বাচিত মুছুন"
+
+#: admin/views/settings.php:19
+msgid "Chatbot Settings"
+msgstr "চ্যাটবট সেটিংস"
+
+#: admin/views/settings.php:24
+msgid "Reset to Defaults"
+msgstr "ডিফল্ট রিসেট করুন"
+
+#: admin/views/settings.php:29
+msgid "Export Settings"
+msgstr "সেটিংস রপ্তানি"
+
+#: admin/views/settings.php:42
+msgid "General"
+msgstr "সাধারণ"
+
+#: admin/views/settings.php:48
+msgid "Appearance"
+msgstr "চেহারা"
+
+#: admin/views/settings.php:54
+msgid "Behavior"
+msgstr "আচরণ"
+
+#: admin/views/settings.php:60
+msgid "AI Integration"
+msgstr "এআই ইন্টিগ্রেশন"
+
+#: admin/views/settings.php:66
+msgid "Notifications"
+msgstr "বিজ্ঞপ্তি"
+
+#: admin/views/settings.php:72
+msgid "Advanced"
+msgstr "উন্নত"
+
+#: admin/views/settings.php:82
+msgid "General Settings"
+msgstr "সাধারণ সেটিংস"
+
+#: admin/views/settings.php:83
+msgid "Basic chatbot configuration and enable/disable options."
+msgstr "মৌলিক চ্যাটবট কনফিগারেশন এবং সক্রিয়/নিষ্ক্রিয় বিকল্প।"
+
+#: admin/views/settings.php:87
+msgid "Chatbot Status"
+msgstr "চ্যাটবট অবস্থা"
+
+#: admin/views/settings.php:97
+msgid "Enable Chatbot"
+msgstr "চ্যাটবট সক্রিয় করুন"
+
+#: admin/views/settings.php:98
+msgid "Turn the chatbot on or off across your entire website."
+msgstr "আপনার সম্পূর্ণ ওয়েবসাইট জুড়ে চ্যাটবট চালু বা বন্ধ করুন।"
+
+#: admin/views/settings.php:109
+msgid "Auto Greeting"
+msgstr "স্বয়ংক্রিয় অভিবাদন"
+
+#: admin/views/settings.php:110
+msgid "Automatically show greeting message when users visit the site."
+msgstr "ব্যবহারকারীরা সাইট দেখার সময় স্বয়ংক্রিয়ভাবে অভিবাদন বার্তা দেখান।"
+
+#: admin/views/settings.php:116
+msgid "Welcome Message"
+msgstr "স্বাগত বার্তা"
+
+#: admin/views/settings.php:119
+msgid "Greeting Text"
+msgstr "অভিবাদন পাঠ্য"
+
+#: admin/views/settings.php:125
+msgid "This message will be shown when the chatbot first loads."
+msgstr "চ্যাটবট প্রথম লোড হওয়ার সময় এই বার্তাটি দেখানো হবে।"
+
+#: admin/views/settings.php:130
+msgid "Business Hours"
+msgstr "ব্যবসার সময়"
+
+#: admin/views/settings.php:134
+msgid "Start Time"
+msgstr "শুরুর সময়"
+
+#: admin/views/settings.php:139
+msgid "End Time"
+msgstr "শেষের সময়"
+
+#: admin/views/settings.php:144
+msgid "Working Days"
+msgstr "কাজের দিন"
+
+#: admin/views/settings.php:149
+msgid "Monday"
+msgstr "সোমবার"
+
+#: admin/views/settings.php:150
+msgid "Tuesday"
+msgstr "মঙ্গলবার"
+
+#: admin/views/settings.php:151
+msgid "Wednesday"
+msgstr "বুধবার"
+
+#: admin/views/settings.php:152
+msgid "Thursday"
+msgstr "বৃহস্পতিবার"
+
+#: admin/views/settings.php:153
+msgid "Friday"
+msgstr "শুক্রবার"
+
+#: admin/views/settings.php:154
+msgid "Saturday"
+msgstr "শনিবার"
+
+#: admin/views/settings.php:155
+msgid "Sunday"
+msgstr "রবিবার"
+
+#: admin/views/settings.php:173
+msgid "Appearance Settings"
+msgstr "চেহারার সেটিংস"
+
+#: admin/views/settings.php:174
+msgid "Customize the look and feel of your chatbot."
+msgstr "আপনার চ্যাটবটের চেহারা এবং অনুভূতি কাস্টমাইজ করুন।"
+
+#: admin/views/settings.php:178
+msgid "Position & Layout"
+msgstr "অবস্থান এবং লেআউট"
+
+#: admin/views/settings.php:182
+msgid "Chat Position"
+msgstr "চ্যাট অবস্থান"
+
+#: admin/views/settings.php:184
+msgid "Bottom Right"
+msgstr "নিচে ডানে"
+
+#: admin/views/settings.php:185
+msgid "Bottom Left"
+msgstr "নিচে বামে"
+
+#: admin/views/settings.php:186
+msgid "Top Right"
+msgstr "উপরে ডানে"
+
+#: admin/views/settings.php:187
+msgid "Top Left"
+msgstr "উপরে বামে"
+
+#: admin/views/settings.php:192
+msgid "Theme"
+msgstr "থিম"
+
+#: admin/views/settings.php:194
+msgid "Modern"
+msgstr "আধুনিক"
+
+#: admin/views/settings.php:195
+msgid "Minimal"
+msgstr "মিনিমাল"
+
+#: admin/views/settings.php:196
+msgid "Dark"
+msgstr "ডার্ক"
+
+#: admin/views/settings.php:197
+msgid "Classic"
+msgstr "ক্লাসিক"
+
+#: admin/views/settings.php:204
+msgid "Colors & Branding"
+msgstr "রং এবং ব্র্যান্ডিং"
+
+#: admin/views/settings.php:208
+msgid "Primary Color"
+msgstr "প্রাথমিক রং"
+
+#: admin/views/settings.php:213
+msgid "Font Family"
+msgstr "ফন্ট ফ্যামিলি"
+
+#: admin/views/settings.php:215
+msgid "Default"
+msgstr "ডিফল্ট"
+
+#: admin/views/settings.php:223
+msgid "Animation & Effects"
+msgstr "অ্যানিমেশন এবং ইফেক্ট"
+
+#: admin/views/settings.php:233
+msgid "Enable Animations"
+msgstr "অ্যানিমেশন সক্রিয় করুন"
+
+#: admin/views/settings.php:234
+msgid "Smooth animations for better user experience."
+msgstr "ভাল ব্যবহারকারীর অভিজ্ঞতার জন্য মসৃণ অ্যানিমেশন।"
+
+#: admin/views/settings.php:245
+msgid "Sound Notifications"
+msgstr "শব্দ বিজ্ঞপ্তি"
+
+#: admin/views/settings.php:246
+msgid "Play notification sounds for new messages."
+msgstr "নতুন বার্তার জন্য বিজ্ঞপ্তি শব্দ চালান।"
+
+#: admin/views/settings.php:255
+msgid "Behavior Settings"
+msgstr "আচরণের সেটিংস"
+
+#: admin/views/settings.php:256
+msgid "Configure how the chatbot behaves and responds."
+msgstr "চ্যাটবট কীভাবে আচরণ করে এবং সাড়া দেয় তা কনফিগার করুন।"
+
+#: admin/views/settings.php:260
+msgid "Response Settings"
+msgstr "প্রতিক্রিয়া সেটিংস"
+
+#: admin/views/settings.php:264
+msgid "Typing Speed (ms)"
+msgstr "টাইপিং গতি (ms)"
+
+#: admin/views/settings.php:266
+msgid "Delay between words when typing responses."
+msgstr "প্রতিক্রিয়া টাইপ করার সময় শব্দের মধ্যে বিলম্ব।"
+
+#: admin/views/settings.php:271
+msgid "Max Message Length"
+msgstr "সর্বোচ্চ বার্তার দৈর্ঘ্য"
+
+#: admin/views/settings.php:273
+msgid "Maximum characters per user message."
+msgstr "প্রতি ব্যবহারকারী বার্তার সর্বোচ্চ অক্ষর।"
+
+#: admin/views/settings.php:279
+msgid "File Upload"
+msgstr "ফাইল আপলোড"
+
+#: admin/views/settings.php:289
+msgid "Allow File Upload"
+msgstr "ফাইল আপলোডের অনুমতি দিন"
+
+#: admin/views/settings.php:290
+msgid "Let users upload files during conversations."
+msgstr "কথোপকথনের সময় ব্যবহারকারীদের ফাইল আপলোড করতে দিন।"
+
+#: admin/views/settings.php:296
+msgid "Timezone"
+msgstr "টাইমজোন"
+
+#: admin/views/settings.php:299
+msgid "Timezone"
+msgstr "টাইমজোন"
+
+#: admin/views/settings.php:309
+msgid "AI Integration"
+msgstr "এআই ইন্টিগ্রেশন"
+
+#: admin/views/settings.php:310
+msgid "Configure OpenAI integration for intelligent responses."
+msgstr "বুদ্ধিমান প্রতিক্রিয়ার জন্য OpenAI ইন্টিগ্রেশন কনফিগার করুন।"
+
+#: admin/views/settings.php:314
+msgid "OpenAI Configuration"
+msgstr "OpenAI কনফিগারেশন"
+
+#: admin/views/settings.php:317
+msgid "OpenAI API Key"
+msgstr "OpenAI API কী"
+
+#: admin/views/settings.php:326
+msgid "AI Model"
+msgstr "এআই মডেল"
+
+#: admin/views/settings.php:334
+msgid "Creativity (0-1)"
+msgstr "সৃজনশীলতা (0-1)"
+
+#: admin/views/settings.php:336
+msgid "Higher values = more creative responses."
+msgstr "উচ্চ মান = আরো সৃজনশীল প্রতিক্রিয়া।"
+
+#: admin/views/settings.php:342
+msgid "Test AI Connection"
+msgstr "এআই সংযোগ পরীক্ষা করুন"
+
+#: admin/views/settings.php:350
+msgid "Notification Settings"
+msgstr "বিজ্ঞপ্তি সেটিংস"
+
+#: admin/views/settings.php:351
+msgid "Configure email notifications and alerts."
+msgstr "ইমেইল বিজ্ঞপ্তি এবং সতর্কতা কনফিগার করুন।"
+
+#: admin/views/settings.php:355
+msgid "Lead Notifications"
+msgstr "লিড বিজ্ঞপ্তি"
+
+#: admin/views/settings.php:365
+msgid "New Lead Alerts"
+msgstr "নতুন লিড সতর্কতা"
+
+#: admin/views/settings.php:366
+msgid "Send email notifications when new leads are captured."
+msgstr "নতুন লিড ক্যাপচার হলে ইমেইল বিজ্ঞপ্তি পাঠান।"
+
+#: admin/views/settings.php:371
+msgid "Notification Email"
+msgstr "বিজ্ঞপ্তি ইমেইল"
+
+#: admin/views/settings.php:373
+msgid "Email address to receive notifications."
+msgstr "বিজ্ঞপ্তি গ্রহণের জন্য ইমেইল ঠিকানা।"
+
+#: admin/views/settings.php:378
+msgid "Email Templates"
+msgstr "ইমেইল টেমপ্লেট"
+
+#: admin/views/settings.php:381
+msgid "New Lead Email Subject"
+msgstr "নতুন লিড ইমেইল বিষয়"
+
+#: admin/views/settings.php:385
+msgid "New Lead Email Template"
+msgstr "নতুন লিড ইমেইল টেমপ্লেট"
+
+#: admin/views/settings.php:387
+msgid "Use placeholders: {name}, {phone}, {email}, {course_interest}"
+msgstr "প্লেসহোল্ডার ব্যবহার করুন: {name}, {phone}, {email}, {course_interest}"
+
+#: admin/views/settings.php:394
+msgid "Advanced Settings"
+msgstr "উন্নত সেটিংস"
+
+#: admin/views/settings.php:395
+msgid "Advanced configuration options for developers."
+msgstr "ডেভেলপারদের জন্য উন্নত কনফিগারেশন বিকল্প।"
+
+#: admin/views/settings.php:399
+msgid "Analytics & Data"
+msgstr "অ্যানালিটিক্স এবং ডেটা"
+
+#: admin/views/settings.php:409
+msgid "Enable Analytics"
+msgstr "অ্যানালিটিক্স সক্রিয় করুন"
+
+#: admin/views/settings.php:410
+msgid "Track user interactions and conversation analytics."
+msgstr "ব্যবহারকারীর মিথস্ক্রিয়া এবং কথোপকথন অ্যানালিটিক্স ট্র্যাক করুন।"
+
+#: admin/views/settings.php:416
+msgid "Data Retention (Days)"
+msgstr "ডেটা ধরে রাখা (দিন)"
+
+#: admin/views/settings.php:418
+msgid "How long to keep conversation data."
+msgstr "কথোপকথনের ডেটা কতদিন রাখতে হবে।"
+
+#: admin/views/settings.php:423
+msgid "API Rate Limit"
+msgstr "API রেট সীমা"
+
+#: admin/views/settings.php:425
+msgid "Requests per minute per user."
+msgstr "প্রতি ব্যবহারকারী প্রতি মিনিটে অনুরোধ।"
+
+#: admin/views/settings.php:431
+msgid "Custom CSS"
+msgstr "কাস্টম CSS"
+
+#: admin/views/settings.php:434
+msgid "Custom CSS Code"
+msgstr "কাস্টম CSS কোড"
+
+#: admin/views/settings.php:436
+msgid "Add custom CSS to override chatbot styles."
+msgstr "চ্যাটবট স্টাইল ওভাররাইড করতে কাস্টম CSS যোগ করুন।"
+
+#: admin/views/settings.php:441
+msgid "Database Management"
+msgstr "ডেটাবেস ব্যবস্থাপনা"
+
+#: admin/views/settings.php:451
+msgid "Remove Data on Uninstall"
+msgstr "আনইনস্টলে ডেটা সরান"
+
+#: admin/views/settings.php:452
+msgid "⚠️ WARNING: This will permanently delete all chatbot data when plugin is uninstalled."
+msgstr "⚠️ সতর্কতা: প্লাগইন আনইনস্টল করার সময় এটি স্থায়ীভাবে সমস্ত চ্যাটবট ডেটা মুছে দেবে।"
+
+#: admin/views/settings.php:457
+msgid "Export All Data"
+msgstr "সমস্ত ডেটা রপ্তানি"
+
+#: admin/views/settings.php:462
+msgid "Cleanup Old Data"
+msgstr "পুরানো ডেটা পরিষ্কার"
+
+#: admin/views/settings.php:472
+msgid "Save Settings"
+msgstr "সেটিংস সংরক্ষণ"
+
+#: frontend/templates/chatbot-widget.php:27
+msgid "চ্যাট খুলুন"
+msgstr "চ্যাট খুলুন"
+
+#: frontend/templates/chatbot-widget.php:46
+msgid "Banglay IELTS সহায়ক"
+msgstr "বাংলায় আইএলটিএস সহায়ক"
+
+#: frontend/templates/chatbot-widget.php:49
+msgid "অনলাইনে আছি"
+msgstr "অনলাইনে আছি"
+
+#: frontend/templates/chatbot-widget.php:52
+msgid "চ্যাট বন্ধ করুন"
+msgstr "চ্যাট বন্ধ করুন"
+
+#: frontend/templates/chatbot-widget.php:65
+msgid "আপনার প্রশ্ন লিখুন..."
+msgstr "আপনার প্রশ্ন লিখুন..."
+
+#: frontend/templates/chatbot-widget.php:72
+msgid "ফাইল আপলোড"
+msgstr "ফাইল আপলোড"
+
+#: frontend/templates/chatbot-widget.php:80
+msgid "পাঠান"
+msgstr "পাঠান"
+
+#: frontend/templates/chatbot-widget.php:88
+msgid "Made with"
+msgstr "তৈরি করেছে"
+
+#: frontend/templates/chatbot-widget.php:91
+msgid "Rocks"
+msgstr "রকস"
+
+#: frontend/templates/chatbot-widget.php:102
+msgid "আরও তথ্য পেতে যোগাযোগের বিস্তারিত দিন"
+msgstr "আরও তথ্য পেতে যোগাযোগের বিস্তারিত দিন"
+
+#: frontend/templates/chatbot-widget.php:106
+msgid "নাম"
+msgstr "নাম"
+
+#: frontend/templates/chatbot-widget.php:107
+msgid "আপনার নাম লিখুন"
+msgstr "আপনার নাম লিখুন"
+
+#: frontend/templates/chatbot-widget.php:111
+msgid "ফোন নম্বর"
+msgstr "ফোন নম্বর"
+
+#: frontend/templates/chatbot-widget.php:115
+msgid "ইমেইল"
+msgstr "ইমেইল"
+
+#: frontend/templates/chatbot-widget.php:116
+msgid "আপনার ইমেইল (ঐচ্ছিক)"
+msgstr "আপনার ইমেইল (ঐচ্ছিক)"
+
+#: frontend/templates/chatbot-widget.php:120
+msgid "কোর্সের আগ্রহ"
+msgstr "কোর্সের আগ্রহ"
+
+#: frontend/templates/chatbot-widget.php:122
+msgid "কোর্স নির্বাচন করুন"
+msgstr "কোর্স নির্বাচন করুন"
+
+#: frontend/templates/chatbot-widget.php:123
+msgid "IELTS Comprehensive (4.5 months)"
+msgstr "আইএলটিএস কমপ্রিহেনসিভ (৪.৫ মাস)"
+
+#: frontend/templates/chatbot-widget.php:124
+msgid "IELTS Focus (3 months)"
+msgstr "আইএলটিএস ফোকাস (৩ মাস)"
+
+#: frontend/templates/chatbot-widget.php:125
+msgid "IELTS Crash (1.5 months)"
+msgstr "আইএলটিএস ক্র্যাশ (১.৫ মাস)"
+
+#: frontend/templates/chatbot-widget.php:126
+msgid "Online Course (2 months)"
+msgstr "অনলাইন কোর্স (২ মাস)"
+
+#: frontend/templates/chatbot-widget.php:127
+msgid "Speaking Only"
+msgstr "শুধু স্পিকিং"
+
+#: frontend/templates/chatbot-widget.php:128
+msgid "Study Abroad Consultation"
+msgstr "বিদেশে অধ্যয়ন পরামর্শ"
+
+#: frontend/templates/chatbot-widget.php:132
+msgid "ফ্রি কনসালটেশন বুক করুন"
+msgstr "ফ্রি কনসালটেশন বুক করুন"
+
+#: includes/class-ai-integration.php:245
+msgid "দুঃখিত, একটি সমস্যা হয়েছে।"
+msgstr "দুঃখিত, একটি সমস্যা হয়েছে।"
+
+#: includes/class-ai-integration.php:246
+msgid "আমরা এখন অফলাইনে আছি।"
+msgstr "আমরা এখন অফলাইনে আছি।"
+
+#: includes/class-ai-integration.php:247
+msgid "বট টাইপ করছে..."
+msgstr "বট টাইপ করছে..."
+
+#: includes/class-ai-integration.php:248
+msgid "Made with Love Rocks"
+msgstr "ভালোবাসায় তৈরি রকস"
+
+#: includes/class-user-tracking.php:89
+msgid "Security check failed"
+msgstr "নিরাপত্তা পরীক্ষা ব্যর্থ হয়েছে"
+
+#: includes/class-user-tracking.php:267
+msgid "Unauthorized"
+msgstr "অননুমোদিত"
+
+#: admin/class-admin.php:412
+msgid "Settings saved successfully!"
+msgstr "সেটিংস সফলভাবে সংরক্ষিত হয়েছে!"
+
+#: admin/class-admin.php:612
+msgid "Unauthorized"
+msgstr "অননুমোদিত"
+
+#: admin/class-admin.php:685
+msgid "Conversation deleted successfully"
+msgstr "কথোপকথন সফলভাবে মুছে ফেলা হয়েছে"
+
+#: admin/class-admin.php:687
+msgid "Failed to delete conversation"
+msgstr "কথোপকথন মুছে ফেলতে ব্যর্থ"
+
+#: admin/class-admin.php:709
+msgid "Lead status updated successfully"
+msgstr "লিড স্ট্যাটাস সফলভাবে আপডেট হয়েছে"
+
+#: admin/class-admin.php:711
+msgid "Failed to update lead status"
+msgstr "লিড স্ট্যাটাস আপডেট করতে ব্যর্থ"
+
+#: includes/class-lead-management.php:514
+msgid "Unauthorized"
+msgstr "অননুমোদিত"
+
+#: includes/class-lead-management.php:525
+msgid "Lead status updated successfully"
+msgstr "লিড স্ট্যাটাস সফলভাবে আপডেট হয়েছে"
+
+#: includes/class-lead-management.php:527
+msgid "Failed to update lead status"
+msgstr "লিড স্ট্যাটাস আপডেট করতে ব্যর্থ"
+
+#: includes/class-lead-management.php:543
+msgid "Note added successfully"
+msgstr "নোট সফলভাবে যোগ করা হয়েছে"
+
+#: includes/class-lead-management.php:545
+msgid "Failed to add note"
+msgstr "নোট যোগ করতে ব্যর্থ"
+
+#: includes/class-lead-management.php:561
+msgid "Follow-up scheduled successfully"
+msgstr "ফলো-আপ সফলভাবে সময়সূচী করা হয়েছে"
+
+#: includes/class-lead-management.php:563
+msgid "Failed to schedule follow-up"
+msgstr "ফলো-আপ সময়সূচী করতে ব্যর্থ"
+
+#: includes/class-analytics.php:745
+msgid "Unauthorized"
+msgstr "অননুমোদিত"
+
+# Additional common chatbot messages
+msgid "Thank you"
+msgstr "ধন্যবাদ"
+
+msgid "You're welcome"
+msgstr "আপনাকে স্বাগতম"
+
+msgid "How can I help you?"
+msgstr "আমি কিভাবে আপনাকে সাহায্য করতে পারি?"
+
+msgid "Please wait..."
+msgstr "অনুগ্রহ করে অপেক্ষা করুন..."
+
+msgid "Connection lost"
+msgstr "সংযোগ বিচ্ছিন্ন"
+
+msgid "Reconnecting..."
+msgstr "পুনরায় সংযোগ করা হচ্ছে..."
+
+msgid "Chat ended"
+msgstr "চ্যাট শেষ"
+
+msgid "Start new chat"
+msgstr "নতুন চ্যাট শুরু করুন"
+
+msgid "Download transcript"
+msgstr "ট্রান্সক্রিপ্ট ডাউনলোড করুন"
+
+msgid "Rate this conversation"
+msgstr "এই কথোপকথনের রেটিং দিন"
+
+msgid "Excellent"
+msgstr "চমৎকার"
+
+msgid "Good"
+msgstr "ভালো"
+
+msgid "Average"
+msgstr "গড়"
+
+msgid "Poor"
+msgstr "খারাপ"
+
+msgid "Very Poor"
+msgstr "খুবই খারাপ"
+
+msgid "Submit feedback"
+msgstr "ফিডব্যাক জমা দিন"
+
+msgid "Quick replies"
+msgstr "দ্রুত উত্তর"
+
+msgid "Course fees"
+msgstr "কোর্সের ফি"
+
+msgid "Admission process"
+msgstr "ভর্তি প্রক্রিয়া"
+
+msgid "Branch location"
+msgstr "শাখার অবস্থান"
+
+msgid "Contact information"
+msgstr "যোগাযোগের তথ্য"
+
+msgid "Business hours"
+msgstr "ব্যবসার সময়"
+
+msgid "Study abroad services"
+msgstr "বিদেশে অধ্যয়ন সেবা"
+
+msgid "Free consultation"
+msgstr "ফ্রি কনসালটেশন"
+
+msgid "Book appointment"
+msgstr "অ্যাপয়েন্টমেন্ট বুক করুন"
+
+msgid "Call now"
+msgstr "এখনই কল করুন"
+
+msgid "Visit office"
+msgstr "অফিস ভিজিট করুন"
+
+msgid "Online application"
+msgstr "অনলাইন আবেদন"
+
+msgid "Course schedule"
+msgstr "কোর্সের সময়সূচী"
+
+msgid "Mock test"
+msgstr "মক টেস্ট"
+
+msgid "Student reviews"
+msgstr "শিক্ষার্থীর পর্যালোচনা"
+
+msgid "Success stories"
+msgstr "সাফল্যের গল্প"
+
+msgid "Scholarship information"
+msgstr "বৃত্তির তথ্য"
+
+msgid "Visa guidance"
+msgstr "ভিসা গাইডেন্স"
+
+msgid "University selection"
+msgstr "বিশ্ববিদ্যালয় নির্বাচন"
+
+msgid "Application support"
+msgstr "আবেদন সহায়তা"
+
+msgid "IELTS preparation"
+msgstr "আইএলটিএস প্রস্তুতি"
+
+msgid "Speaking practice"
+msgstr "স্পিকিং অনুশীলন"
+
+msgid "Writing tips"
+msgstr "লেখার টিপস"
+
+msgid "Reading strategies"
+msgstr "পড়ার কৌশল"
+
+msgid "Listening practice"
+msgstr "শোনার অনুশীলন"
+
+msgid "Band score requirements"
+msgstr "ব্যান্ড স্কোর প্রয়োজনীয়তা"
+
+msgid "Test registration"
+msgstr "পরীক্ষার রেজিস্ট্রেশন"
+
+msgid "Test dates"
+msgstr "পরীক্ষার তারিখ"
+
+msgid "Test fees"
+msgstr "পরীক্ষার ফি"
+
+msgid "Result publication"
+msgstr "ফলাফল প্রকাশ"
+
+msgid "Retake policy"
+msgstr "পুনরায় পরীক্ষার নীতি"
